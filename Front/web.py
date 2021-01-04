@@ -1,10 +1,14 @@
 from flask import Flask, render_template, request
+import sys
+
+sys.path.append('../Back')
 
 from Back.archive import *
 from Back.logfile import *
 
 if __name__ == '__main__':
     app = Flask(__name__)
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     @app.route('/')
     def index() -> None:
@@ -35,5 +39,6 @@ if __name__ == '__main__':
     @app.route('/insert-product')
     def insert_product():
         return render_template('insert_product.html')
+
 
     app.run(debug=True)
