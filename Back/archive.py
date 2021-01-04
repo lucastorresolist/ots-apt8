@@ -1,4 +1,4 @@
-def write_marketplace(path: str, obj: str) -> None:
+def write(path: str, obj: str) -> None:
     archive = open(path, 'a')
     archive.write(f'{obj}\n')
     archive.close()
