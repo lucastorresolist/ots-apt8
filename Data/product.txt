@@ -1,0 +1,2 @@
+Livro;produto para leitura;50
+cama;móveis;1000

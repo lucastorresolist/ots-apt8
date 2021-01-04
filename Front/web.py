@@ -8,10 +8,25 @@ from Back.logfile import *
 
 if __name__ == '__main__':
     app = Flask(__name__)
-    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+    #app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     @app.route('/')
     def index() -> None:
+        return render_template('index.html')
+
+
+    @app.route('/insert-marketplace')
+    def insert_marketplace():
+        return render_template('insert_marketplace.html')
+
+
+    @app.route('/insert-product')
+    def insert_product():
+        return render_template('insert_product.html')
+
+
+    @app.route('/inserted')
+    def inserted():
         saved = None
         input_name = request.args.get('input_name')
         input_description = request.args.get('input_description')
@@ -27,18 +42,6 @@ if __name__ == '__main__':
                 write("../Data/marketplaces.txt", f"{input_name};{input_description}")
                 save_log(f"Marketplace inserted - Name: {input_name}; Description: {input_description}; ")
                 saved = "Marketplace"
-
-        return render_template('index.html', saved=saved)
-
-
-    @app.route('/insert-marketplace')
-    def insert_marketplace():
-        return render_template('insert_marketplace.html')
-
-
-    @app.route('/insert-product')
-    def insert_product():
-        return render_template('insert_product.html')
-
+        return render_template("inserted.html", saved=saved)
 
     app.run(debug=True)

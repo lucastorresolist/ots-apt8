@@ -1,2 +1,8 @@
-[04/01/2021 15:38:49]: text
+[04/01/2021 18:05:22]: Marketplace inserted - Name: Submarino; Description: Maior loja online; 
+
+[04/01/2021 18:05:30]: Marketplace inserted - Name: Magazine Luiza; Description: segunda maior loja online; 
+
+[04/01/2021 18:05:39]: Product inserted - Name: Livro; Description: produto para leitura; Price: 50
+
+[04/01/2021 18:05:59]: Product inserted - Name: cama; Description: móveis; Price: 1000
 
