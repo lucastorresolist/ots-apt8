@@ -1,3 +1,14 @@
 body{
     background: #363636;
+    color: #FFF;
+    font-family: "Lucida Handwriting", "Monaco", monospace;
+}
+
+a{
+    color:#FFDEAD;
+}
+
+input{
+    position: absolute;
+    left: 9%;
 }

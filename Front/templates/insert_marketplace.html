@@ -1,12 +1,13 @@
 {% extends 'template.html' %}
 {% block body %}
-    <form action="">
+    <form action="/">
         <label for="input_name">Name</label>
         <input type="text" name="input_name" id="input_name">
 
         <br>
 
         <label for="input_description">Description</label>
-        <input type="text" name="input_name" id="input_description">
+        <input type="text" name="input_description" id="input_description">
+        <input type='submit' value='Save' /> <br />
     </form>
 {% endblock %}

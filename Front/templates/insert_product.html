@@ -1,4 +1,21 @@
 {% extends 'template.html' %}
 {% block body %}
-oi
+    <form action="/">
+        <label for="input_name">Name</label>
+        <input type="text" name="input_name" id="input_name">
+
+        <br>
+
+        <label for="input_description">Description</label>
+        <input type="text" name="input_description" id="input_description">
+
+        <br>
+
+        <label for="input_price">Price</label>
+        <input type="number" name="input_price" id="input_price">
+
+        <br>
+
+        <input type='submit' value='Save' />
+    </form>
 {% endblock %}
