@@ -9,6 +9,30 @@ a{
 }
 
 input{
-    position: absolute;
+    position: relative;
     left: 9%;
+}
+
+.title{
+    text-align: center;
+}
+
+.form{
+    margin: 0 auto;
+	width: 260px;
+}
+.form label{
+	display: inline-block;
+	text-align: right;
+	float: left;
+}
+
+.form input{
+	display: inline-block;
+	text-align: left;
+	float: right;
+}
+
+.form_buttons{
+    text-align: center;
 }

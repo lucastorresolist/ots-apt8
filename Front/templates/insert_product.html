@@ -1,21 +1,26 @@
 {% extends 'template.html' %}
 {% block body %}
+
+    <h2 class="title">Insert Product</h2>
     <form action="/inserted">
-        <label for="input_name">Name</label>
-        <input type="text" name="input_name" id="input_name">
+        <div class="form">
+            <label for="input_name">Name</label>
+            <input type="text" name="input_name" id="input_name">
+
+            <label for="input_description">Description</label>
+            <input type="text" name="input_description" id="input_description">
+
+            <label for="input_price">Price</label>
+            <input type="number" name="input_price" id="input_price">
+
+        </div>
 
         <br>
 
-        <label for="input_description">Description</label>
-        <input type="text" name="input_description" id="input_description">
+        <div class="form_buttons">
+            <button onclick="location.href='/'" type="button">Go back</button>
+            <input type='submit' value='Save' />
+        </div>
 
-        <br>
-
-        <label for="input_price">Price</label>
-        <input type="number" name="input_price" id="input_price">
-
-        <br>
-
-        <input type='submit' value='Save' />
     </form>
 {% endblock %}
