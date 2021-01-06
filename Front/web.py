@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import sys
 
-sys.path.append('../Back')
+sys.path.append('f:\projetos\olistprojetos\marketplacesduplas\marketplace-dupla2\ots-apt9')
 
 from Back.archive import *
 from Back.logfile import *
@@ -34,12 +34,12 @@ if __name__ == '__main__':
 
         if (input_name is not None) and (input_description is not None):
             if input_price is not None:
-                write("../Data/product.txt", f"{input_name};{input_description};{input_price}")
+                write("f:\projetos\olistprojetos\marketplacesduplas\marketplace-dupla2\ots-apt9\Data\product.txt", f"{input_name};{input_description};{input_price}")
                 save_log(f"Product inserted - Name: {input_name}; Description: {input_description}; "
                          f"Price: {input_price}")
                 saved = "Product"
             else:
-                write("../Data/marketplaces.txt", f"{input_name};{input_description}")
+                write("f:\projetos\olistprojetos\marketplacesduplas\marketplace-dupla2\ots-apt9\Data\marketplaces.txt", f"{input_name};{input_description}")
                 save_log(f"Marketplace inserted - Name: {input_name}; Description: {input_description}; ")
                 saved = "Marketplace"
         return render_template("inserted.html", saved=saved)
