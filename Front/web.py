@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request
 import sys
 
-sys.path.append('../Back')
+sys.path.append('.')
 
 from Back.archive import *
 from Back.logfile import *
+from Back.marketplace import *
 
 if __name__ == '__main__':
     app = Flask(__name__)
@@ -43,5 +44,11 @@ if __name__ == '__main__':
                 save_log(f"Marketplace inserted - Name: {input_name}; Description: {input_description}; ")
                 saved = "Marketplace"
         return render_template("inserted.html", saved=saved)
+
+
+    @app.route('/mktplaces_list')
+    def list_mktplaces():
+        mktplaces = list_marketplaces('../Data/marketplaces.txt')
+        return render_template("mktplaces_list.html", mktplaces=mktplaces)
 
     app.run(debug=True)
