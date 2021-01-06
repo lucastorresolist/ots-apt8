@@ -1,14 +1,15 @@
 from flask import Flask, render_template, request
 import sys
 
-sys.path.append('../Back')
+sys.path.append('.')
 
 from Back.archive import *
 from Back.logfile import *
+from Back.products_listing import *
 
 if __name__ == '__main__':
     app = Flask(__name__)
-    #app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     @app.route('/')
     def index() -> None:
@@ -34,14 +35,20 @@ if __name__ == '__main__':
 
         if (input_name is not None) and (input_description is not None):
             if input_price is not None:
-                write("../Data/product.txt", f"{input_name};{input_description};{input_price}")
+                write("./Data/product.txt", f"{input_name};{input_description};{input_price}")
                 save_log(f"Product inserted - Name: {input_name}; Description: {input_description}; "
                          f"Price: {input_price}")
                 saved = "Product"
             else:
-                write("../Data/marketplaces.txt", f"{input_name};{input_description}")
+                write("./Data/marketplaces.txt", f"{input_name};{input_description}")
                 save_log(f"Marketplace inserted - Name: {input_name}; Description: {input_description}; ")
                 saved = "Marketplace"
         return render_template("inserted.html", saved=saved)
+    
+    @app.route('/products')
+    def products():
+        products_list = list_products("./Data/product.txt")
+        save_log(f"Products listed")
+        return render_template("products.html", products=products_list)
 
     app.run(debug=True)

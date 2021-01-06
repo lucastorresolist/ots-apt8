@@ -1,0 +1,26 @@
+{% extends 'template.html' %}
+{% block body %}
+<div class="main-container">
+    <table border="1" class="products-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products%}
+                <tr>
+                    <td>{{product["name"]}}</td>
+                    <td>{{product["description"]}}</td>
+                    <td>R$ {{product["price"]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/">Back</a>
+</div>
+
+{% endblock %}
