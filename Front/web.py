@@ -48,6 +48,7 @@ if __name__ == '__main__':
     @app.route('/products')
     def products():
         products_list = list_products("f:\projetos\olistprojetos\marketplacesduplas\marketplace-dupla2\ots-apt9\Data\product.txt")
+        save_log(f"Products listed")
         return render_template("products.html", products=products_list)
 
     app.run(debug=True)
