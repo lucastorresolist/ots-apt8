@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import sys
 
-sys.path.append('../Back')
+sys.path.append('.')
 
 from Back.archive import *
 from Back.logfile import *
@@ -48,6 +48,7 @@ if __name__ == '__main__':
 
     @app.route('/mktplaces_list')
     def list_mktplaces():
-        return render_template("mktplaces_list.html")
+        mktplaces = list_marketplaces('../Data/marketplaces.txt')
+        return render_template("mktplaces_list.html", mktplaces=mktplaces)
 
     app.run(debug=True)
