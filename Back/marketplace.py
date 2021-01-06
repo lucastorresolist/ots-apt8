@@ -7,5 +7,3 @@ def list_marketplaces(path) -> list:
         file_lines.append(formated_line)
     file.close()
     return file_lines
-
-print(list_marketplaces())
