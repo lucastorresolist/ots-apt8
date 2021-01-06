@@ -50,5 +50,16 @@ if __name__ == '__main__':
         products_list = list_products("./Data/product.txt")
         save_log(f"Products listed")
         return render_template("products.html", products=products_list)
+    
+    @app.route("/insert-sellers")
+    def insert_sellers():
+        input_name = request.args.get('name')
+        input_phone = request.args.get('phone')
+        input_email = request.args.get('email')
+
+        write("./Data/sellers.txt", f"{input_name};{input_phone};{input_email}")
+        save_log(f"Seller inserted - Name: {input_name}; Phone: {input_phone}; E-mail: {input_email} ")
+
+        return render_template("sellers.html")
 
     app.run(debug=True)
