@@ -1,0 +1,27 @@
+{% extends 'template.html' %}
+
+{% block body %}
+
+<h1> List of Marketplaces </h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Marketplace</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mktplace in mktplaces %}
+                    <tr>
+                        <td>{{ mktplace['name'] }}</td>
+                        <td>{{ mktplace['description'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+
+<a href="/">Back</a>
+
+{% endblock %}

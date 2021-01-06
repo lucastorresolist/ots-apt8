@@ -6,6 +6,7 @@ sys.path.append('.')
 from Back.archive import *
 from Back.logfile import *
 from Back.products_listing import *
+from Back.marketplace import *
 
 if __name__ == '__main__':
     app = Flask(__name__)
@@ -61,5 +62,11 @@ if __name__ == '__main__':
         save_log(f"Seller inserted - Name: {input_name}; Phone: {input_phone}; E-mail: {input_email} ")
 
         return render_template("sellers.html")
+
+
+    @app.route('/mktplaces_list')
+    def list_mktplaces():
+        mktplaces = list_marketplaces('../Data/marketplaces.txt')
+        return render_template("mktplaces_list.html", mktplaces=mktplaces)
 
     app.run(debug=True)
