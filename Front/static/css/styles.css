@@ -36,3 +36,13 @@ input{
 .form_buttons{
     text-align: center;
 }
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.products-table {
+    border: 1;
+}
