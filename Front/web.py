@@ -44,4 +44,9 @@ if __name__ == '__main__':
                 saved = "Marketplace"
         return render_template("inserted.html", saved=saved)
 
+
+    @app.route('/mktplaces_list')
+    def list_mktplaces():
+        return render_template("mktplaces_list.html")
+
     app.run(debug=True)
