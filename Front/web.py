@@ -5,6 +5,7 @@ sys.path.append('../Back')
 
 from Back.archive import *
 from Back.logfile import *
+from Back.marketplace import *
 
 if __name__ == '__main__':
     app = Flask(__name__)
