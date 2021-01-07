@@ -60,5 +60,9 @@ if __name__ == '__main__':
         create_category(name, description)
         return render_template('category.html', category=category)
 
+    @app.route('/list_category')
+    def list_category():
+        categories = list_category('..Data/category.txt')
+        return render_template("list_category.html", category=category)
 
     app.run(debug=True)
