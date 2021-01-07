@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 body{
     background: #363636;
     color: #FFF;
-    font-family: "Lucida Handwriting", "Monaco", monospace;
+    font-family: "Roboto", monospace;
 }
 
 a{
@@ -47,3 +49,21 @@ input{
 .products-table {
     border: 1;
 }
+
+.seller-container {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto;
+}
+
+.seller-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
