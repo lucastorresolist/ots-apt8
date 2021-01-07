@@ -67,4 +67,10 @@ if __name__ == '__main__':
         categories = list_category('../Data/category.txt')
         return render_template("list_category.html", categories=categories)
 
+
+    @app.route('/log_list')
+    def listed_log():
+        list = list_log()
+        return render_template('list_logs.html', list=list)
+
     app.run(debug=True)
