@@ -7,6 +7,7 @@ from Back.archive import *
 from Back.logfile import *
 from Back.products_listing import *
 from Back.marketplace import *
+from Back.sellers_listing import *
 
 if __name__ == '__main__':
     app = Flask(__name__)
@@ -63,6 +64,10 @@ if __name__ == '__main__':
 
         return render_template("sellers.html")
 
+    @app.route("/sellers-listing")
+    def sellers_listing():
+        sellers = list_sellers("./Data/sellers.txt")
+        return render_template("seller-listing.html", sellers=sellers)
 
     @app.route('/mktplaces_list')
     def list_mktplaces():
