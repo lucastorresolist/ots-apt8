@@ -1,0 +1,25 @@
+{% extends 'template.html %}
+
+{% block body %}
+
+    <h2 class="title">Create Marketplaces</h2>
+    <form action="/create_category">
+        <div class="form">
+            <label for="name">Category Name</label>
+            <input type="text" name="name" id="name"/>
+        </div>
+
+        <div class="form">
+            <label for="description">Category Description</label>
+            <input type="text" name="description" id="description"/>
+        </div>
+
+        <br />
+
+        <div class="form-buttons">
+            <button onclick='location.href="/"' type="button">Back</button>
+            <input type="submit" value="Save"/>
+        </div>
+    </form>
+
+{% endblock %}
