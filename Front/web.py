@@ -38,11 +38,11 @@ if __name__ == '__main__':
             if input_price is not None:
                 write("../Data/product.txt", f"{input_name};{input_description};{input_price}")
                 save_log(f"Product inserted - Name: {input_name}; Description: {input_description}; "
-                         f"Price: {input_price}")
+                         f"Price: {input_price}", "create")
                 saved = "Product"
             else:
                 write("../Data/marketplaces.txt", f"{input_name};{input_description}")
-                save_log(f"Marketplace inserted - Name: {input_name}; Description: {input_description}; ")
+                save_log(f"Marketplace inserted - Name: {input_name}; Description: {input_description}; ", "create")
                 saved = "Marketplace"
         return render_template("inserted.html", saved=saved)
 
@@ -50,6 +50,7 @@ if __name__ == '__main__':
     @app.route('/mktplaces_list')
     def list_mktplaces():
         mktplaces = list_marketplaces('../Data/marketplaces.txt')
+        save_log(f'Category {name} successfully created!', 'list')
         return render_template("mktplaces_list.html", mktplaces=mktplaces)
 
     @app.route('/create_category')
@@ -58,19 +59,20 @@ if __name__ == '__main__':
         description = request.args.get('description')
         if name != None and description != None:
             write('../Data/category.txt', f'{name};{description}')
-            save_log(f'Category {name} successfully created!')
+            save_log(f'Category {name} successfully created!', 'create')
         print(name, description)
         return render_template('category.html')
 
     @app.route('/list_category')
     def category_listed():
         categories = list_category('../Data/category.txt')
+        save_log(f'Categories listed!', 'list')
         return render_template("list_category.html", categories=categories)
 
 
     @app.route('/log_list')
     def listed_log():
-        list = list_log()
-        return render_template('list_logs.html', list=list)
+        list = read_log()
+        return render_template('log_list.html', list=list)
 
     app.run(debug=True)
