@@ -53,16 +53,18 @@ if __name__ == '__main__':
         return render_template("mktplaces_list.html", mktplaces=mktplaces)
 
     @app.route('/create_category')
-    def create_category():
+    def category_created():
         name = request.args.get('name')
         description = request.args.get('description')
+        if name != None and description != None:
+            write('../Data/category.txt', f'{name};{description}')
+            save_log(f'Category {name} successfully created!')
         print(name, description)
-        create_category(name, description)
-        return render_template('category.html', category=category)
+        return render_template('category.html')
 
     @app.route('/list_category')
-    def list_category():
-        categories = list_category('..Data/category.txt')
-        return render_template("list_category.html", category=category)
+    def category_listed():
+        categories = list_category('../Data/category.txt')
+        return render_template("list_category.html", categories=categories)
 
     app.run(debug=True)
