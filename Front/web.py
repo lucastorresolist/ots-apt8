@@ -6,6 +6,7 @@ sys.path.append('.')
 from Back.archive import *
 from Back.logfile import *
 from Back.marketplace import *
+from Back.category import *
 
 if __name__ == '__main__':
     app = Flask(__name__)
@@ -50,5 +51,14 @@ if __name__ == '__main__':
     def list_mktplaces():
         mktplaces = list_marketplaces('../Data/marketplaces.txt')
         return render_template("mktplaces_list.html", mktplaces=mktplaces)
+
+    @app.route('/create_category')
+    def create_category():
+        name = request.args.get('name')
+        description = request.args.get('description')
+        print(name, description)
+        create_category(name, description)
+        return render_template('category.html', category=category)
+
 
     app.run(debug=True)
