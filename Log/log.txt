@@ -1,0 +1,3 @@
+{"date": "07/01/2021 14:40:02", "message": "Category moveis successfully created!", "type": "list"}
+{"date": "07/01/2021 14:40:10", "message": "Category celular successfully created!", "type": "list"}
+{"date": "07/01/2021 14:53:08", "message": "Category PC successfully created!", "type": "create"}
