@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 body{
     background: #363636;
     color: #FFF;
-    font-family: "Lucida Handwriting", "Monaco", monospace;
+    font-family: "Roboto", monospace;
 }
 
 a{
