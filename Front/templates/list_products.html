@@ -12,9 +12,9 @@
         <tbody>
             {% for product in products%}
                 <tr>
-                    <td>{{product["name"]}}</td>
-                    <td>{{product["description"]}}</td>
-                    <td>R$ {{product["price"]}}</td>
+                    <td>{{product[0]}}</td>
+                    <td>{{product[1]}}</td>
+                    <td>R$ {{product[2]}}</td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -1,3 +1,15 @@
-{"date": "07/01/2021 14:40:02", "message": "Category moveis successfully created!", "type": "list"}
-{"date": "07/01/2021 14:40:10", "message": "Category celular successfully created!", "type": "list"}
-{"date": "07/01/2021 14:53:08", "message": "Category PC successfully created!", "type": "create"}
+11/01/2021 | 15:40:34 | Marketplace | Saved
+11/01/2021 | 15:40:40 | Category | Saved
+11/01/2021 | 15:40:43 | Marketplaces | Listed
+11/01/2021 | 15:40:46 | Category | Listed
+11/01/2021 | 16:06:35 | Product | Saved
+11/01/2021 | 16:06:38 | Products | Listed
+11/01/2021 | 16:07:06 | Products | Listed
+11/01/2021 | 16:14:28 | Seller | Saved
+11/01/2021 | 16:14:35 | Sellers | Listed
+11/01/2021 | 16:16:31 | Category | Saved
+11/01/2021 | 16:17:25 | Marketplaces | Listed
+11/01/2021 | 16:18:35 | Marketplaces | Listed
+11/01/2021 | 16:19:09 | Category | Listed
+11/01/2021 | 16:19:12 | Products | Listed
+11/01/2021 | 16:19:16 | Sellers | Listed

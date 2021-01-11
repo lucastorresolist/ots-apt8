@@ -14,8 +14,8 @@
             <tbody>
                 {% for mktplace in mktplaces %}
                     <tr>
-                        <td>{{ mktplace['name'] }}</td>
-                        <td>{{ mktplace['description'] }}</td>
+                        <td>{{ mktplace[0] }}</td>
+                        <td>{{ mktplace[1] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>

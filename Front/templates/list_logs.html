@@ -1,7 +1,6 @@
 {% extends 'template.html' %}
 
 {% block body %}
-
     <h2> List of Logs </h2>
     <table>
         <thead>
@@ -11,20 +10,18 @@
         </thead>
         <tbody>
             {% for log in list %}
-
+            
                 <tr>
-                    {% if log["type"] == "list" %}
-                        <td style="color: red;">{{ log["date"], log["message"] }}</td>
+                    {% if log[3] == "Listed" %}
+                        <td style="color: red;">{{ log[0]}} | {{log[1]}} | {{log[3]}} | {{log[2]}}</td>
                     {% endif %}
 
-                    {% if log["type"] == "create" %}
-                        <td style="color: blue;">{{ log["date"], log["message"] }}</td>
+                    {% if log[3] == "Saved" %}
+                        <td style="color: rgb(255, 183, 0);">{{ log[0]}} | {{log[1]}} | {{log[3]}} | {{log[2]}}</td>
                     {% endif %}
                 </tr>
-
             {% endfor %}
         </tbody>
         <tfoot></tfoot>
     </table>
-
 {% endblock %}
