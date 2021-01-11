@@ -1,0 +1,27 @@
+{% extends 'template.html' %}
+{% block body %}
+
+<div class="main-container">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for seller in sellers %}
+                <tr>
+                    <td>{{seller[0]}}</td>
+                    <td>{{seller[1]}}</td>
+                    <td>{{seller[2]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/">Back</a>
+</div>
+
+{% endblock %}
