@@ -2,7 +2,7 @@ root = 'Data/category.txt'
 
 def save_category(name:str, description:str) -> None:
     try:
-        data = f'{name}; {description}\n'
+        data = f'{name};{description}\n'
         file_category = open(root, 'a')
         file_category.write(data) 
         return True

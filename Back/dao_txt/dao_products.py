@@ -2,7 +2,7 @@ root = 'Data/products.txt'
 
 def save_product(name:str, description:str, price:float):
     try:
-        data = f'{name}; {description}; {price}\n'
+        data = f'{name};{description};{price}\n'
         file_product = open(root, 'a')
         file_product.write(data)
         return True

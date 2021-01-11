@@ -5,11 +5,11 @@ sys.path.append('.')
 
 from Back.archive import *
 from Back.log import *
-from Back.controler.controller_categories import *
-from Back.controler.controller_logs import *
-from Back.controler.controller_marketplaces import *
-from Back.controler.controller_products import *
-from Back.controler.controller_sellers import *
+from Back.controller.controller_categories import *
+from Back.controller.controller_logs import *
+from Back.controller.controller_marketplaces import *
+from Back.controller.controller_products import *
+from Back.controller.controller_sellers import *
 
 
 if __name__ == '__main__':

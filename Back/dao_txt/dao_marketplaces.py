@@ -2,7 +2,7 @@ root = 'Data/marketplace.txt'
 
 def save_mkplace(name:str, description:str) -> None:
     try:
-        data = f'{name}; {description}\n'
+        data = f'{name};{description}\n'
         file_mkp = open(root, 'a')
         file_mkp.write(data)
         return True
