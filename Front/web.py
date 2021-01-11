@@ -5,10 +5,11 @@ sys.path.append('.')
 
 from Back.archive import *
 from Back.log import *
-from Back.list_categories import *
-from Back.list_marketplaces import *
-from Back.list_products import *
-from Back.list_sellers import *
+from Back.controler.controller_categories import *
+from Back.controler.controller_logs import *
+from Back.controler.controller_marketplaces import *
+from Back.controler.controller_products import *
+from Back.controler.controller_sellers import *
 
 
 if __name__ == '__main__':
@@ -22,6 +23,12 @@ if __name__ == '__main__':
 
     @app.route('/insert-marketplace')
     def insert_marketplace():
+        if request.args:
+            input_name = request.args.get('input_name')
+            input_description = request.args.get('input_description')
+            save_mkp(input_name, input_description)
+            saved = "Marketplaces"
+            return render_template("inserted.html", saved=saved)
         return render_template('insert_marketplace.html')
 
 
@@ -33,14 +40,14 @@ if __name__ == '__main__':
     @app.route('/inserted')
     def inserted():
         saved = None
-        input_name = request.args.get('input_name')
-        input_description = request.args.get('input_description')
+        # input_name = request.args.get('input_name')
+        # input_description = request.args.get('input_description')
         input_price = request.args.get('input_price')
 
         if (input_name is not None) and (input_description is not None):
             if input_price is not None:
 
-                write("../Data/product.txt", f"{input_name};{input_description};{input_price}")
+                write("../Data/products.txt", f"{input_name};{input_description};{input_price}")
                 save_log(f"Product inserted - Name: {input_name}; Description: {input_description}; "
                          f"Price: {input_price}", "create")
                 saved = "Product"
@@ -48,15 +55,15 @@ if __name__ == '__main__':
                 write("../Data/marketplaces.txt", f"{input_name};{input_description}")
                 save_log(f"Marketplace inserted - Name: {input_name}; Description: {input_description}; ", "create")
 
-                write("./Data/product.txt", f"{input_name};{input_description};{input_price}")
+                write("./Data/products.txt", f"{input_name};{input_description};{input_price}")
                 save_log(f"Product - Name: {input_name}; Description: {input_description}; "
                          f"Price: {input_price}", "Insert")
                 saved = "Product"
-            else:
-                write("./Data/marketplaces.txt", f"{input_name};{input_description}")
-                save_log(f"Marketplace - Name: {input_name}; Description: {input_description}; ", "Insert")
+            # else:
+            #     write("./Data/marketplaces.txt", f"{input_name};{input_description}")
+            #     save_log(f"Marketplace - Name: {input_name}; Description: {input_description}; ", "Insert")
 
-                saved = "Marketplace"
+            #     saved = "Marketplace"
         return render_template("inserted.html", saved=saved)
     
     @app.route('/products')
