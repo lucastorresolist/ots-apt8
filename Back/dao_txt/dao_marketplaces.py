@@ -1,4 +1,4 @@
-root = 'Data/marketplace.txt'
+root = 'Data/marketplaces.txt'
 
 def save_mkplace(name:str, description:str) -> None:
     try:

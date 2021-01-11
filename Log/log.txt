@@ -1,3 +1,14 @@
 {"date": "07/01/2021 14:40:02", "message": "Category moveis successfully created!", "type": "list"}
 {"date": "07/01/2021 14:40:10", "message": "Category celular successfully created!", "type": "list"}
 {"date": "07/01/2021 14:53:08", "message": "Category PC successfully created!", "type": "create"}
+11/01/2021 | 14:58:30 | Marketplace | Saved
+11/01/2021 | 15:02:43 | List | Marketplaces
+11/01/2021 | 15:03:04 | List | Marketplaces
+11/01/2021 | 15:03:10 | Marketplace | Saved
+11/01/2021 | 15:03:12 | List | Marketplaces
+11/01/2021 | 15:04:33 | Marketplace | Saved
+11/01/2021 | 15:04:35 | List | Marketplaces
+11/01/2021 | 15:06:47 | List | Marketplaces
+11/01/2021 | 15:07:49 | List | Marketplaces
+11/01/2021 | 15:14:04 | Category | Saved
+11/01/2021 | 15:14:27 | Category | Listed

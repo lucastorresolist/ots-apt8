@@ -21,16 +21,42 @@ if __name__ == '__main__':
         return render_template('index.html')
 
 
+    @app.route('/create_category')
+    def category_created():
+        if request.args:
+            name = request.args.get('name')
+            description = request.args.get('description')
+            save_category(name, description)
+            save_l("Saved", "Category")
+            saved = "Category"
+            return render_template("inserted.html", saved=saved)
+        return render_template('category.html')
+
+    @app.route('/list_category')
+    def category_listed():
+        categories = list_cat()
+        save_l("Listed", "Category")
+        return render_template("list_category.html", categories=categories)
+
+
     @app.route('/insert-marketplace')
     def insert_marketplace():
         if request.args:
             input_name = request.args.get('input_name')
             input_description = request.args.get('input_description')
             save_mkp(input_name, input_description)
+            save_l("Saved", "Marketplace")
             saved = "Marketplaces"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_marketplace.html')
 
+
+    @app.route('/mktplaces_list')
+    def list_mktplaces():
+        mktplaces = list_mkp()
+        save_l("Listed", "Marketplaces")
+        return render_template("mktplaces_list.html", mktplaces=mktplaces)
+    
 
     @app.route('/insert-product')
     def insert_product():
@@ -90,38 +116,13 @@ if __name__ == '__main__':
         save_log("Sellers", "List")
         return render_template("seller-listing.html", sellers=sellers)
 
-    @app.route('/mktplaces_list')
-    def list_mktplaces():
 
-        mktplaces = list_marketplaces('../Data/marketplaces.txt')
-        save_log(f'Category {name} successfully created!', 'list')
-
-        mktplaces = list_marketplaces('./Data/marketplaces.txt')
-        save_log("Marketplaces", "List")
-
-        return render_template("mktplaces_list.html", mktplaces=mktplaces)
-    
     @app.route('/logs')
     def logs():
         logs_list = read_log()
         return render_template("logs_list.html", logs_list=logs_list)
 
 
-    @app.route('/create_category')
-    def category_created():
-        name = request.args.get('name')
-        description = request.args.get('description')
-        if name != None and description != None:
-            write('../Data/category.txt', f'{name};{description}')
-            save_log(f'Category {name} successfully created!', 'create')
-        print(name, description)
-        return render_template('category.html')
-
-    @app.route('/list_category')
-    def category_listed():
-        categories = list_category('../Data/category.txt')
-        save_log(f'Categories listed!', 'list')
-        return render_template("list_category.html", categories=categories)
 
 
     @app.route('/log_list')
