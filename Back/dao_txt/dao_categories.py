@@ -1,4 +1,4 @@
-root = 'Data/category.txt'
+root = 'Data/categories.txt'
 
 def save_category(name:str, description:str) -> None:
     try:

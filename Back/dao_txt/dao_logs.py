@@ -16,7 +16,7 @@ def list_logs():
     list_log = []
     file_log = open(root, 'r')
     for l in file_log:
-        log = l.strip().split('|')
+        log = l.strip().split(' | ')
         log[2] = log[2].strip()
         list_log.append(log)
     return list_log
