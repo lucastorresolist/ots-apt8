@@ -7,7 +7,11 @@ from Back.archive import *
 from Back.logfile import *
 from Back.products_listing import *
 from Back.marketplace import *
+
+from Back.category import *
+
 from Back.sellers_listing import *
+
 
 if __name__ == '__main__':
     app = Flask(__name__)
@@ -82,4 +86,21 @@ if __name__ == '__main__':
         logs_list = read_log()
         return render_template("logs_list.html", logs_list=logs_list)
 
+
+    @app.route('/create_category')
+    def category_created():
+        name = request.args.get('name')
+        description = request.args.get('description')
+        if name != None and description != None:
+            write('../Data/category.txt', f'{name};{description}')
+            save_log(f'Category {name} successfully created!')
+        print(name, description)
+        return render_template('category.html')
+
+    @app.route('/list_category')
+    def category_listed():
+        categories = list_category('../Data/category.txt')
+        return render_template("list_category.html", categories=categories)
+
     app.run(debug=True)
+
