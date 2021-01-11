@@ -1,0 +1,30 @@
+{% extends 'template.html' %}
+
+{% block body %}
+
+    <h2> List of Logs </h2>
+    <table>
+        <thead>
+            <tr>
+                <th> Registered Logs </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in list %}
+
+                <tr>
+                    {% if log["type"] == "list" %}
+                        <td style="color: red;">{{ log["date"], log["message"] }}</td>
+                    {% endif %}
+
+                    {% if log["type"] == "create" %}
+                        <td style="color: blue;">{{ log["date"], log["message"] }}</td>
+                    {% endif %}
+                </tr>
+
+            {% endfor %}
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+{% endblock %}

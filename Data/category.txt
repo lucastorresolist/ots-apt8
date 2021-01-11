@@ -1,1 +1,8 @@
 hkjhkjhkl;jkhklhjkhl
+moveis;de cozinha
+Moveis;De cozinha
+telecom;telefonia
+mobile;tablet
+moveis;mesa
+celular;telecom
+PC;desktop
