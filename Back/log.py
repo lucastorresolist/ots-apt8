@@ -14,7 +14,7 @@ sys.path.append('.')
 
 def save_log(message, type) -> None:
     date = datetime.today().strftime('%d/%m/%Y %H:%M:%S')
-    message =  "{" + f'"date": "{date}", "message": "{message}", "type": "{type}"' + "}"
+    message = f'{date}", "{message}", "{type}"'
     write("../Log/log.txt", message)
 
 def read_log():

@@ -4,13 +4,11 @@ import sys
 sys.path.append('.')
 
 from Back.archive import *
-from Back.logfile import *
-from Back.products_listing import *
-from Back.marketplace import *
-
-from Back.category import *
-
-from Back.sellers_listing import *
+from Back.log import *
+from Back.list_categories import *
+from Back.list_marketplaces import *
+from Back.list_products import *
+from Back.list_sellers import *
 
 
 if __name__ == '__main__':
