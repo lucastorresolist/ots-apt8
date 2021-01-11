@@ -1,0 +1,30 @@
+{% extends 'template.html' %}
+{% block body %}
+
+<div class="main-container">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Log Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs_list %}
+                <tr>
+
+                    {% if log["color"] == "red" %}
+                        <td style="color:red;">{{log["message"]}}</td>
+                    {% endif %}
+
+                    {% if log["color"] == "blue" %}
+                        <td style="color:blue;">{{log["message"]}}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/">Back</a>
+</div>
+
+{% endblock %}

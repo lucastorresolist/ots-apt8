@@ -1,0 +1,25 @@
+{% extends 'template.html' %}
+{% block body %}
+<div class="seller-container">
+    <form>
+        <label name="name">Name:</label>
+        <input type="text" name="name" for="name" required/>
+
+        <label name="phone">Phone:</label>
+        <input type="text" for="phone" name="phone" pattern="\d{11}" placeholder="(99) 99999-9999" required/>
+
+        <label name="email">E-mail:</label>
+        <input type="email" name="email" for="email" required/>
+
+        <button onclick="popUp()" type="submit">Save</button>
+    </form>
+
+    <a href="/">Back</a>
+</div>
+
+<script>
+    function popUp(){
+        alert("Seller registered succsfully")
+    }
+</script>
+{% endblock %}
