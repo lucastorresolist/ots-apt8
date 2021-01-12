@@ -8,7 +8,7 @@ def save_log(function_name: str, operation_type: str):
     files = open(root, 'a')
     data = datetime.datetime.now()
     files.write(data.strftime(
-        f"%d/%m/%Y | %H:%M:%S | {operation_type} | {function_name}\n"))
+        f"%d/%m/%Y %H:%M:%S | {operation_type} | {function_name}\n"))
     files.close()
 
 
