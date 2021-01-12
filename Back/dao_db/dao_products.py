@@ -17,7 +17,7 @@ def save_product(name:str, description:str, price:str) -> None:
 def list_products():
     conn = psycopg2.connect(connection_string)
     cursor = conn.cursor()
-    sql = "select name, description, price from product"
+    sql = "select name, description, price from products"
     cursor.execute(sql)
     list_products = cursor.fetchall()
     return list_products
