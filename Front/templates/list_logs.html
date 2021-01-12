@@ -12,12 +12,12 @@
             {% for log in list %}
             
                 <tr>
-                    {% if log[3] == "Listed" %}
-                        <td style="color: red;">{{ log[0]}} | {{log[1]}} | {{log[3]}} | {{log[2]}}</td>
+                    {% if log[1] == "Listed" %}
+                        <td style="color: red;">{{ log[0]}} | {{log[2]}} | {{log[1]}}</td>
                     {% endif %}
 
-                    {% if log[3] == "Saved" %}
-                        <td style="color: rgb(255, 183, 0);">{{ log[0]}} | {{log[1]}} | {{log[3]}} | {{log[2]}}</td>
+                    {% if log[1] == "Saved" %}
+                        <td style="color: rgb(255, 183, 0);">{{ log[0]}} | {{log[2]}} | {{log[1]}}</td>
                     {% endif %}
                 </tr>
             {% endfor %}

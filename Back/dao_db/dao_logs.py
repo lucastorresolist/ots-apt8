@@ -8,7 +8,7 @@ connection_string = f"host={_host} user={_user} dbname={_database} password={_pa
 def save_log(action:str, type:str) -> None:
     conn = psycopg2.connect(connection_string)
     cursor = conn.cursor()
-    sql = f"INSERT INTO log (action, type) values ('{action}','{type}')"
+    sql = f"INSERT INTO logs (action, type) values ('{action}','{type}')"
     cursor.execute(sql)
     conn.commit()
     cursor.close()
