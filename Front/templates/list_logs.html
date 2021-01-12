@@ -1,27 +1,23 @@
 {% extends 'template.html' %}
-
 {% block body %}
-    <h2> List of Logs </h2>
-    <table>
-        <thead>
-            <tr>
-                <th> Registered Logs </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for log in list %}
-            
-                <tr>
-                    {% if log[1] == "Listed" %}
-                        <td style="color: red;">{{ log[0]}} | {{log[2]}} | {{log[1]}}</td>
-                    {% endif %}
-
-                    {% if log[1] == "Saved" %}
-                        <td style="color: rgb(255, 183, 0);">{{ log[0]}} | {{log[2]}} | {{log[1]}}</td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot></tfoot>
-    </table>
+<h2> List of Logs </h2>
+<table>
+    <thead>
+        <tr>
+            <th> Registered Logs </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in list %}
+        <tr>
+            {% if log.action == "Listed" %}
+            <td style="color: red;">{{ log.id}} ||{{ log.data}} | {{log.type}} | {{log.action}}</td>
+            {% endif %}
+            {% if log.action == "Saved" %}
+            <td style="color: rgb(255, 183, 0);">{{ log.id}} ||{{ log.data}} | {{log.type}} | {{log.action}}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
