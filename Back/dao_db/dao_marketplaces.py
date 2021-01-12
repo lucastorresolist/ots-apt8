@@ -5,7 +5,7 @@ _password = 'olist123'
 _database = 'topskills13'
 connection_string = f"host={_host} user={_user} dbname={_database} password={_password}"
 
-def save_marketplace(name:str, description:str) -> None:
+def save_mkplace(name:str, description:str) -> None:
     conn = psycopg2.connect(connection_string)
     cursor = conn.cursor()
     sql = f"INSERT INTO marketplaces (name, description) values ('{name}','{description}')"

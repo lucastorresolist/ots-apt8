@@ -20,4 +20,9 @@ def list_categories():
     cursor = conn.cursor()
     sql = "select name, description from categories"
     cursor.execute(sql)
+    list_categories = cursor.fetchall()
     return list_categories
+
+a = list_categories()
+for i in a:
+    print(i[0])
