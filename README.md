@@ -7,5 +7,5 @@ Atividade em dupla (Matheus Lopes, Ralph)
 # ots-apt9 - Etapa 3
 Atividade em dupla (Luciana, Marcello)
 
-# ots-apt9 - Etapa 3
+# ots-apt9 - Etapa 4
 Atividade em dupla (Lucas, Marcos)
