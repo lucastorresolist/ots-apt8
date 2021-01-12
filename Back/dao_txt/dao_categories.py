@@ -19,3 +19,7 @@ def list_categories():
         category = f.strip().split(';')
         list_category.append(category)
     return list_category
+
+a = list_categories()
+for i in a:
+    print(i[0])
