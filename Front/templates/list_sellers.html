@@ -5,6 +5,7 @@
     <table border="1">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Phone</th>
                 <th>E-mail</th>
@@ -13,9 +14,10 @@
         <tbody>
             {% for seller in sellers %}
                 <tr>
-                    <td>{{seller[0]}}</td>
-                    <td>{{seller[1]}}</td>
-                    <td>{{seller[2]}}</td>
+                    <td>{{seller.id}}</td>
+                    <td>{{seller.name}}</td>
+                    <td>{{seller.phone}}</td>
+                    <td>{{seller.email}}</td>
                 </tr>
             {% endfor %}
         </tbody>

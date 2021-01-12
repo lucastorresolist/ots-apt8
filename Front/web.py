@@ -9,6 +9,8 @@ from Back.controller.controller_logs import *
 from Back.controller.controller_marketplaces import *
 from Back.controller.controller_products import *
 from Back.controller.controller_sellers import *
+from Back.models.seller import Seller
+from Back.models.marketplace import Marketplace
 
 
 if __name__ == '__main__':
@@ -49,7 +51,8 @@ if __name__ == '__main__':
         if request.args:
             input_name = request.args.get('input_name')
             input_description = request.args.get('input_description')
-            save_mkp(input_name, input_description)
+            marketplace = Marketplace(input_name, input_description)
+            save_mkp(marketplace)
             save_l("Saved", "Marketplace")
             saved = "Marketplaces"
             return render_template("inserted.html", saved=saved)
@@ -89,7 +92,8 @@ if __name__ == '__main__':
             input_name = request.args.get('name')
             input_phone = request.args.get('phone')
             input_email = request.args.get('email')
-            save_sell(input_name, input_phone, input_email)
+            seller = Seller(input_name, input_phone, input_email)
+            save_sell(seller)
             save_l("Saved", "Seller")
             saved = "Seller"
             return render_template('inserted.html', saved=saved)
