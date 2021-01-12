@@ -1,6 +1,9 @@
 import sys
 sys.path.append('.')
 from Back.models.categories import Category
+from Back.models.products import Product
+from Back.models.seller import Seller
+from Back.models.marketplace import Marketplace
 from Back.controller.controller_sellers import *
 from Back.controller.controller_products import *
 from Back.controller.controller_marketplaces import *
@@ -47,7 +50,8 @@ if __name__ == '__main__':
         if request.args:
             input_name = request.args.get('input_name')
             input_description = request.args.get('input_description')
-            save_mkp(input_name, input_description)
+            marketplace = Marketplace(input_name, input_description)
+            save_mkp(marketplace)
             log = Log("Saved", "Marketplace")
             save_l(log)
             saved = "Marketplaces"
@@ -88,7 +92,8 @@ if __name__ == '__main__':
             input_name = request.args.get('name')
             input_phone = request.args.get('phone')
             input_email = request.args.get('email')
-            save_sell(input_name, input_phone, input_email)
+            seller = Seller(input_name, input_phone, input_email)
+            save_sell(seller)
             log = Log("Saved", "Seller")
             save_l(log)
             saved = "Seller"
