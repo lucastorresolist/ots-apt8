@@ -7,6 +7,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Marketplace</th>
                     <th>Description</th>
                 </tr>
@@ -14,8 +15,9 @@
             <tbody>
                 {% for mktplace in mktplaces %}
                     <tr>
-                        <td>{{ mktplace[0] }}</td>
-                        <td>{{ mktplace[1] }}</td>
+                        <td>{{ mktplace.id }}</td>
+                        <td>{{ mktplace.name }}</td>
+                        <td>{{ mktplace.description }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
