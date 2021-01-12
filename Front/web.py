@@ -24,7 +24,8 @@ if __name__ == '__main__':
             description = request.args.get('description')
             category = Category(name, description)
             save_cat(category)
-            save_l("Saved", "Category")
+            log = Log("Saved", "Category")
+            save_l(log)
             saved = "Category"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_category.html')
@@ -32,7 +33,8 @@ if __name__ == '__main__':
     @app.route('/list_categories')
     def list_categories():
         categories = list_cat()
-        save_l("Listed", "Category")
+        log = Log("Listed", "Category")
+        save_l(log)
         return render_template("list_categories.html", categories=categories)
 
     @app.route('/list_logs')
@@ -46,7 +48,8 @@ if __name__ == '__main__':
             input_name = request.args.get('input_name')
             input_description = request.args.get('input_description')
             save_mkp(input_name, input_description)
-            save_l("Saved", "Marketplace")
+            log = Log("Saved", "Marketplace")
+            save_l(log)
             saved = "Marketplaces"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_marketplace.html')
@@ -54,7 +57,8 @@ if __name__ == '__main__':
     @app.route('/list_mktplaces')
     def list_mktplaces():
         mktplaces = list_mkp()
-        save_l("Listed", "Marketplaces")
+        log = Log("Listed", "Marketplaces")
+        save_l(log)
         return render_template("list_mktplaces.html", mktplaces=mktplaces)
 
     @app.route('/insert_product')
@@ -65,7 +69,8 @@ if __name__ == '__main__':
             input_price = request.args.get('input_price')
             product = Product(input_name, input_description, input_price)
             save_prod(product)
-            save_l("Saved", "Product")
+            log = Log("Saved", "Product")
+            save_l(log)
             saved = "Product"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_product.html')
@@ -73,7 +78,8 @@ if __name__ == '__main__':
     @app.route('/list_products')
     def list_products():
         products_list = list_prod()
-        save_l("Listed", "Products")
+        log = Log("Listed", "Products")
+        save_l(log)
         return render_template("list_products.html", products=products_list)
 
     @app.route("/insert_seller")
@@ -83,7 +89,8 @@ if __name__ == '__main__':
             input_phone = request.args.get('phone')
             input_email = request.args.get('email')
             save_sell(input_name, input_phone, input_email)
-            save_l("Saved", "Seller")
+            log = Log("Saved", "Seller")
+            save_l(log)
             saved = "Seller"
             return render_template('inserted.html', saved=saved)
         return render_template("insert_seller.html")
@@ -91,7 +98,8 @@ if __name__ == '__main__':
     @app.route("/list_sellers")
     def list_sellers():
         sellers = list_sell()
-        save_l("Listed", "Sellers")
+        log = Log("Listed", "Sellers")
+        save_l(log)
         return render_template("list_sellers.html", sellers=sellers)
 
     @app.route('/inserted')
