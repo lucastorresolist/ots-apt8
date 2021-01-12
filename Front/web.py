@@ -1,12 +1,12 @@
 import sys
 sys.path.append('.')
-from flask import Flask, render_template, request
-from Back.controller.controller_categories import *
-from Back.controller.controller_logs import *
-from Back.controller.controller_marketplaces import *
-from Back.controller.controller_products import *
-from Back.controller.controller_sellers import *
 from Back.models.categories import Category
+from Back.controller.controller_sellers import *
+from Back.controller.controller_products import *
+from Back.controller.controller_marketplaces import *
+from Back.controller.controller_logs import *
+from Back.controller.controller_categories import *
+from flask import Flask, render_template, request
 
 
 if __name__ == '__main__':
@@ -63,7 +63,8 @@ if __name__ == '__main__':
             input_name = request.args.get('input_name')
             input_description = request.args.get('input_description')
             input_price = request.args.get('input_price')
-            save_prod(input_name, input_description, input_price)
+            product = Product(input_name, input_description, input_price)
+            save_prod(product)
             save_l("Saved", "Product")
             saved = "Product"
             return render_template("inserted.html", saved=saved)
