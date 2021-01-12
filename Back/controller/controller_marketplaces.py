@@ -1,4 +1,4 @@
-from Back.dao_txt.dao_marketplaces import save_mkplace, list_mkplaces
+from Back.dao_db.dao_marketplaces import save_mkplace, list_mkplaces
 
 def save_mkp(name: str, description: str) -> None:
     save_mkplace(name, description)

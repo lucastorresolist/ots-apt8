@@ -1,4 +1,4 @@
-from Back.dao_txt.dao_sellers import save_seller, list_sellers
+from Back.dao_db.dao_sellers import save_seller, list_sellers
 
 def save_sell(name: str, phone: str, email: str) -> None:
     save_seller(name, phone, email)

@@ -1,4 +1,4 @@
-from Back.dao_txt.dao_categories import save_category, list_categories
+from Back.dao_db.dao_categories import save_category, list_categories
 
 def save_cat(name: str, description: str) -> None:
     save_category(name, description)
