@@ -1,5 +1,5 @@
 from Back.models.model_products import Product
-from Back.models.log import Log
+from Back.models.model_logs import Log
 from Back.dao_db.dao_products import save_product, list_products
 from Back.controller.controller_logs import save_l
 
