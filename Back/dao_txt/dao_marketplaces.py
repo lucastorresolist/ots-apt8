@@ -1,21 +1,22 @@
+from Back.models.model_marketplaces import Marketplace
+
+
 root = 'Data/marketplaces.txt'
 
-def save_mkplace(name:str, description:str) -> None:
+def save_mkplace(marketplace:Marketplace) -> None:
     try:
-        data = f'{name};{description}\n'
-        file_mkp = open(root, 'a')
-        file_mkp.write(data)
+        data = f'{marketplace.name};{marketplace.description}\n'
+        with open(root, 'a') as file_mkp:
+            file_mkp.write(data)
         return True
     except Exception as e:
         return False
-    finally:
-        file_mkp.close()
-
 
 def list_mkplaces():
     list_mkp = []
-    file_mkp = open(root, 'r')
-    for f in  file_mkp:
-        mkp = f.strip().split(';')
-        list_mkp.append(mkp)
+    with open(root, 'r') as file_mkp:
+        for f in  file_mkp:
+            temp_mkp = f.strip().split(';')
+            mkp = Marketplace(temp_mkp[0], temp_mkp[1])
+            list_mkp.append(mkp)
     return list_mkp

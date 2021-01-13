@@ -1,5 +1,5 @@
-from Back.models.seller import Seller
-from Back.models.log import Log
+from Back.models.model_sellers import Seller
+from Back.models.model_logs import Log
 from Back.dao_db.dao_sellers import save_seller, list_sellers
 from Back.controller.controller_logs import save_l
 

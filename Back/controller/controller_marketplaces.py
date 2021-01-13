@@ -1,5 +1,5 @@
-from Back.models.marketplace import Marketplace
-from Back.models.log import Log
+from Back.models.model_marketplaces import Marketplace
+from Back.models.model_logs import Log
 from Back.dao_db.dao_marketplaces import save_mkplace, list_mkplaces
 from Back.controller.controller_logs import save_l
 

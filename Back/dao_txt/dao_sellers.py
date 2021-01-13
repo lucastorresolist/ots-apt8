@@ -1,21 +1,22 @@
+from Back.models.model_sellers import Seller
+
+
 root = 'Data/sellers.txt'
 
-def save_seller(name:str, phone: str, email: str) -> None:
+def save_seller(seller:Seller) -> None:
     try:
-        data = f'{name};{phone};{email}\n'
-        file_seller = open(root, 'a')
-        file_seller.write(data) 
+        data = f'{seller.name};{seller.phone};{seller.email}\n'
+        with open(root, 'a') as file_seller:
+            file_seller.write(data) 
         return True
     except Exception as e:
         return False
-    finally:
-        file_seller.close()
-
 
 def list_sellers():
     list_seller = []
-    file_seller = open(root, 'r')
-    for f in  file_seller:
-        seller = f.strip().split(';')
-        list_seller.append(seller)
+    with open(root, 'r') as file_seller:
+        for f in  file_seller:
+            temp_seller = f.strip().split(';')
+            seller = Seller(temp_seller[0], temp_seller[1], temp_seller[2])
+            list_seller.append(seller)
     return list_seller
