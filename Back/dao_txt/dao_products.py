@@ -1,20 +1,24 @@
-root = 'Data/products.txt'
+from Back.models.model_products import Product
 
-def save_product(name:str, description:str, price:float):
+
+ROOT = 'Data/products.txt'
+
+
+def save_product(product: Product):
     try:
-        data = f'{name};{description};{price}\n'
-        file_product = open(root, 'a')
-        file_product.write(data)
+        data = f'{0};{product.name};{product.description};{product.price}\n'
+        with open(ROOT, 'a') as file_product:
+            file_product.write(data)
         return True
     except Exception as e:
         return False
-    finally:
-        file_product.close()
+
 
 def list_products():
     list_prod = []
-    file_prod = open(root, 'r')
-    for f in  file_prod:
-        prod = f.strip().split(';')
-        list_prod.append(prod)
+    with open(ROOT, 'r') as file_prod:
+        for f in file_prod:
+            result = f.strip().split(';')
+            product = Product(result[1], result[2], result[3], result[0])
+            list_prod.append(product)
     return list_prod

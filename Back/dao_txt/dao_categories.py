@@ -1,25 +1,24 @@
-root = 'Data/categories.txt'
+from Back.models.model_categories import Category
 
-def save_category(name:str, description:str) -> None:
+
+ROOT = 'Data/categories.txt'
+
+
+def save_category(category: Category) -> None:
     try:
-        data = f'{name};{description}\n'
-        file_category = open(root, 'a')
-        file_category.write(data) 
+        data = f'{0};{category.name};{category.description}\n'
+        with open(ROOT, 'a') as file_category:
+            file_category.write(data)
         return True
     except Exception as e:
         return False
-    finally:
-        file_category.close()
 
 
 def list_categories():
     list_category = []
-    file_category = open(root, 'r')
-    for f in  file_category:
-        category = f.strip().split(';')
-        list_category.append(category)
+    with open(ROOT, 'r') as file_category:
+        for f in file_category:
+            result = f.strip().split(';')
+            category = Category(result[1], result[2], result[0])
+            list_category.append(category)
     return list_category
-
-a = list_categories()
-for i in a:
-    print(i[0])

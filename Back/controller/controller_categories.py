@@ -1,4 +1,4 @@
-from Back.models.categories import Category
+from Back.models.model_categories import Category
 from Back.models.log import Log
 from Back.dao_db.dao_categories import save_category, list_categories
 from Back.controller.controller_logs import save_l
