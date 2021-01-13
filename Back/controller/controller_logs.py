@@ -1,4 +1,4 @@
-from Back.models.log import Log
+from Back.models.model_logs import Log
 from Back.dao_db.dao_logs import save_log, list_logs
 
 
