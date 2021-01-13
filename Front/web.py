@@ -1,7 +1,7 @@
 import sys
 sys.path.append('.')
-from Back.models.categories import Category
-from Back.models.products import Product
+from Back.models.model_categories import Category
+from Back.models.model_products import Product
 from Back.models.seller import Seller
 from Back.models.marketplace import Marketplace
 from Back.controller.controller_sellers import *
