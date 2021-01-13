@@ -1,5 +1,5 @@
 from Back.models.model_categories import Category
-from Back.dao_txt.dao_categories import save_category, list_categories
+from Back.dao_db.dao_categories import save_category, list_categories
 
 
 def save_cat(category: Category) -> None:
