@@ -15,10 +15,14 @@
             <td>{{ category.id }}</td>
             <td>{{ category.name }}</td>
             <td>{{ category.description }}</td>
+            <td>
+                <button onclick="location.href='list_categories?id={{category.id}}'" type="button">Deletar</button>
+                <button onclick="location.href='update_category?id={{category.id}}'" type="button">Update</button>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
-    <tfoot></tfoot>
 </table>
+<p>{{message}}</p>
 <a href="/">Back</a>
 {% endblock %}

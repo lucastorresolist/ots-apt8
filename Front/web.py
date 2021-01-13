@@ -1,16 +1,15 @@
 import sys
 sys.path.append('.')
-from Back.models.model_categories import Category
-from Back.models.model_products import Product
-from Back.models.model_sellers import Seller
-from Back.models.model_marketplaces import Marketplace
-from Back.controller.controller_sellers import *
-from Back.controller.controller_products import *
-from Back.controller.controller_marketplaces import *
-from Back.controller.controller_logs import *
-from Back.controller.controller_categories import *
-
 from flask import Flask, render_template, request
+from Back.controller.controller_categories import *
+from Back.controller.controller_logs import *
+from Back.controller.controller_marketplaces import *
+from Back.controller.controller_products import *
+from Back.controller.controller_sellers import *
+from Back.models.model_marketplaces import Marketplace
+from Back.models.model_sellers import Seller
+from Back.models.model_products import Product
+from Back.models.model_categories import Category
 
 
 if __name__ == '__main__':
@@ -32,10 +31,37 @@ if __name__ == '__main__':
             return render_template("inserted.html", saved=saved)
         return render_template('insert_category.html')
 
+    @app.route('/update_category')
+    def update_category():
+        msg = ''
+        if request.args:
+            id = request.args.get('id')
+            name = request.args.get('name')
+            description = request.args.get('description')
+            if id is not None and name is None:
+                category = list_cat_byId(id)
+                return render_template("update_category.html", id_=id, name_=category.name, description_=category.description)
+            category = Category(name, description, id)
+            if update_cat(category):
+                msg = "Categoria atualizada com sucesso!"
+                return render_template("update_category.html", message=msg)
+            else:
+                msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
+                return render_template("update_category.html", message=msg)
+        return render_template("update_category.html")
+
     @app.route('/list_categories')
     def list_categories():
+        msg = ''
+        if request.args:
+            id = request.args.get('id')
+            if id is not None:
+                if delete_cat(id):
+                    msg = "Categoria deletada com sucesso!"
+                else:
+                    msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
         categories = list_cat()
-        return render_template("list_categories.html", categories=categories)
+        return render_template("list_categories.html", categories=categories, message=msg)
 
     @app.route('/list_logs')
     def listed_log():
