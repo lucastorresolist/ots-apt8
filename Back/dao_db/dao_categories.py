@@ -11,12 +11,12 @@ def save_category(category: Category) -> None:
 
 
 def list_categories():
+    list_categories = []
     with psycopg2.connect(credentials()) as conn:
         cursor = conn.cursor()
         sql = "select id, name, description from categories"
         cursor.execute(sql)
         result = cursor.fetchall()
-        list_categories = []
         for item in result:
             category = Category(item[1], item[2], item[0])
             list_categories.append(category)

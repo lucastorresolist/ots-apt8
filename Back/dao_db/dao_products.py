@@ -11,12 +11,12 @@ def save_product(product: Product) -> None:
 
 
 def list_products():
+    list_products = []
     with psycopg2.connect(credentials()) as conn:
         cursor = conn.cursor()
         sql = "SELECT id, name, description, price FROM products"
         cursor.execute(sql)
         result = cursor.fetchall()
-        list_products = []
         for item in result:
             produto = Product(item[1], item[2], item[3], item[0])
             list_products.append(produto)
