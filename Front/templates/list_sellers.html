@@ -9,6 +9,7 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>E-mail</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,11 @@
                     <td>{{seller.name}}</td>
                     <td>{{seller.phone}}</td>
                     <td>{{seller.email}}</td>
+                    <td>                        
+                        <a href="/delete_seller/{{ seller.id }}">Delete</a>
+                        <br>
+                        <a href="/update_seller/{{ seller.id }}">Update</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
