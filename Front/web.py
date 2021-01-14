@@ -96,10 +96,38 @@ if __name__ == '__main__':
             return render_template("inserted.html", saved=saved)
         return render_template('insert_product.html')
 
+    @app.route('/update_product')
+    def update_products():
+        msg = ''
+        if request.args:
+            id = request.args.get('id')
+            input_name = request.args.get('input_name')
+            input_description = request.args.get('input_description')
+            input_price = request.args.get('input_price')
+            if id is not None and input_name is None:
+                product = list_prod_byId(id)
+                return render_template("update_product.html", id_=id, name=product.name, description=product.description, price=product.price)
+            product = Product(input_name, input_description, input_price, id)
+            if update_product(product):
+                msg = "Produto atualizada com sucesso!"
+                return render_template("update_product.html", message=msg)
+            else:
+                msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
+                return render_template("update_product.html", message=msg)
+        return render_template("update_product.html")
+
     @app.route('/list_products')
     def list_products():
+        msg = ''
+        if request.args:
+            id = request.args.get('id')
+            if id is not None:
+                if delete_prod(id):
+                    msg = "Produto deletado com sucesso!"
+                else:
+                    msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
         products_list = list_prod()
-        return render_template("list_products.html", products=products_list)
+        return render_template("list_products.html", products=products_list, message=msg)
 
     @app.route("/insert_seller")
     def insert_sellers():

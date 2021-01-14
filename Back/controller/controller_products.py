@@ -25,6 +25,8 @@ def list_prod_byId(id: int) -> Product:
 def delete_prod(id: int) -> bool:
     try:
         if delete_product(id):
+            log = Log("Delete", "Products")
+            save_l(log)
             return True
         return False
     except Exception as e:
@@ -34,6 +36,8 @@ def delete_prod(id: int) -> bool:
 def update_pro(product: Product) -> bool:
     try:
         if update_product(product):
+            log = Log("Update", "Products")
+            save_l(log)
             return True
         return False
     except Exception as e:

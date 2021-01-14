@@ -1,6 +1,7 @@
 {% extends 'template.html' %}
 {% block body %}
 <div class="main-container">
+    <h1> List of Products </h1>
     <table border="1" class="products-table">
         <thead>
             <tr>
@@ -8,6 +9,7 @@
                 <th>Product</th>
                 <th>Description</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +19,10 @@
                 <td>{{product.name}}</td>
                 <td>{{product.description}}</td>
                 <td>R$ {{product.price}}</td>
+                <td>
+                    <button onclick="location.href='list_products?id={{product.id}}'" type="button">Deletar</button>
+                    <button onclick="location.href='update_product?id={{product.id}}'" type="button">Update</button>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

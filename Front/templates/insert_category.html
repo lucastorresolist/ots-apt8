@@ -1,25 +1,18 @@
 {% extends 'template.html' %}
-
 {% block body %}
-
-    <h2 class="title">Insert Category</h2>
-    <form action="/insert_category">
-        <div class="form">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" required/>
-        </div>
-
-        <div class="form">
-            <label for="description">Description</label>
-            <input type="text" name="description" id="description" required/>
-        </div>
-
-        <br />
-
-        <div class="form_buttons">
-            <button onclick="location.href='/'" type="button">Go back</button>
-            <input type='submit' value='Save' />
-        </div>
-    </form>
-
+<h2 class="title">Insert Category</h2>
+<form action="/insert_category">
+    <div class="form">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required />
+    </div>
+    <div class="form">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" required />
+    </div>
+    <div class="form_buttons">
+        <button onclick="location.href='/'" type="button">Go back</button>
+        <input type='submit' value='Save' />
+    </div>
+</form>
 {% endblock %}

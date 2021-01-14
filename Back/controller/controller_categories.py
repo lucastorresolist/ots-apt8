@@ -25,6 +25,8 @@ def list_cat_byId(id: int) -> Category:
 def delete_cat(id: int) -> bool:
     try:
         if delete_category(id):
+            log = Log("Delete", "Category")
+            save_l(log)
             return True
         return False
     except Exception as e:
@@ -34,6 +36,8 @@ def delete_cat(id: int) -> bool:
 def update_cat(category: Category) -> bool:
     try:
         if update_category(category):
+            log = Log("Update", "Category")
+            save_l(log)
             return True
         return False
     except Exception as e:
