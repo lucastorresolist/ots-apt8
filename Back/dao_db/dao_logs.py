@@ -1,9 +1,9 @@
-from .connection import *
+from Back.dao_db.connection import Connection
 from Back.models.model_logs import Log
 
 
 def save_log(log: Log) -> None:
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = f"INSERT INTO logs (action, type) VALUES ('{log.action}','{log.type}')"
         cursor.execute(sql)
@@ -11,7 +11,7 @@ def save_log(log: Log) -> None:
 
 def list_logs():
     list_logs = []
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = "SELECT id, data, action, type FROM logs"
         cursor.execute(sql)

@@ -1,9 +1,9 @@
-from .connection import *
+from .connection import Connection
 from Back.models.model_sellers import Seller
 
 
 def save_seller(seller:Seller) -> None:
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = f"INSERT INTO sellers (name, phone, email) VALUES ('{seller.name}','{seller.phone}','{seller.email}');"
         cursor.execute(sql)
@@ -11,7 +11,7 @@ def save_seller(seller:Seller) -> None:
 
 def list_sellers() -> list:
     sellers = []
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = "SELECT name, phone, email, id FROM sellers;"
         cursor.execute(sql)
@@ -22,7 +22,7 @@ def list_sellers() -> list:
     return sellers
 
 def get_by_id(id:int) -> Seller:
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = f"SELECT name, phone, email, id FROM sellers WHERE id = {id};"
         cursor.execute(sql)
@@ -31,7 +31,7 @@ def get_by_id(id:int) -> Seller:
     return seller
 
 def update_seller(seller:Seller) -> None:
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = f"""
                 UPDATE sellers SET 
@@ -42,7 +42,7 @@ def update_seller(seller:Seller) -> None:
         conn.commit()
 
 def delete_seller(id:int) -> None:
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = f"DELETE FROM sellers WHERE id = {id};"
         cursor.execute(sql)
