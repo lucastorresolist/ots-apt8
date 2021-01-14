@@ -10,7 +10,7 @@ from Back.controller.controller_marketplaces import *
 from Back.controller.controller_logs import *
 from Back.controller.controller_categories import *
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 
 if __name__ == '__main__':
@@ -58,6 +58,22 @@ if __name__ == '__main__':
         mktplaces = list_mkp()
         return render_template("list_mktplaces.html", mktplaces=mktplaces)
 
+    @app.route('/update_marketplace/<id>')
+    def update_marketplace(id):
+        marketplace = get_mkp_by_id(id)
+        if request.args:
+            new_name = request.args.get('input_name')
+            new_description = request.args.get('input_description')
+            marketplace = Marketplace(new_name, new_description, id)
+            update_mkp(marketplace)
+            return redirect("/list_mktplaces")
+        return render_template('update_marketplace.html', marketplace = marketplace)
+
+    @app.route("/delete_marketplace/<int:id>")
+    def delete_marketplace(id):
+        delete_mkp(id)
+        return redirect('/list_mktplaces')
+
     @app.route('/insert_product')
     def insert_product():
         if request.args:
@@ -91,6 +107,23 @@ if __name__ == '__main__':
     def list_sellers():
         sellers = list_sell()
         return render_template("list_sellers.html", sellers=sellers)
+
+    @app.route("/update_seller/<int:id>")
+    def update_seller(id):
+        seller = get_seller_by_id(id)
+        if request.args:
+            new_name = request.args.get('name')
+            new_phone = request.args.get('phone')
+            new_email = request.args.get('email')
+            seller = Seller(new_name, new_phone, new_email, id)
+            update_sell(seller)
+            return redirect('/list_sellers')
+        return render_template("update_seller.html", seller = seller)
+
+    @app.route("/delete_seller/<int:id>")
+    def delete_seller(id):
+        delete_sell(id)
+        return redirect('/list_sellers')
 
     @app.route('/inserted')
     def inserted():
