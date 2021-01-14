@@ -1,9 +1,9 @@
-from .connection import *
+from .connection import Connection
 from Back.models.model_marketplaces import Marketplace
 
 
 def save_mkplace(marketplace:Marketplace) -> None:
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = f"INSERT INTO marketplaces (name, description) VALUES ('{marketplace.name}','{marketplace.description}');"
         cursor.execute(sql)
@@ -11,7 +11,7 @@ def save_mkplace(marketplace:Marketplace) -> None:
 
 def list_mkplaces() -> list:
     marketplaces = []
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = "SELECT name, description, id FROM marketplaces;"
         cursor.execute(sql)
@@ -22,7 +22,7 @@ def list_mkplaces() -> list:
     return marketplaces
 
 def get_by_id(id:int) -> int:
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = f"SELECT name, description, id FROM marketplaces WHERE id = {id};"
         cursor.execute(sql)
@@ -31,7 +31,7 @@ def get_by_id(id:int) -> int:
     return marketplace
 
 def update_mktplace(marketplace:Marketplace) -> None:
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = f"""
                 UPDATE marketplaces SET 
@@ -42,7 +42,7 @@ def update_mktplace(marketplace:Marketplace) -> None:
         conn.commit()
 
 def delete_mktplace(id:int) -> None:
-    with psycopg2.connect(credentials()) as conn:
+    with Connection() as conn:
         cursor = conn.cursor()
         sql = f"DELETE FROM marketplaces WHERE id = {id};"
         cursor.execute(sql)
