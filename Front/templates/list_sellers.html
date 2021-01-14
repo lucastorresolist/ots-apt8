@@ -1,11 +1,11 @@
 {% extends 'template.html' %}
 {% block body %}
-
 <div class="main-container">
+    <h1> List of Sellers </h1>
     <table border="1">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Identifier</th>
                 <th>Name</th>
                 <th>Phone</th>
                 <th>E-mail</th>
@@ -13,17 +13,15 @@
         </thead>
         <tbody>
             {% for seller in sellers %}
-                <tr>
-                    <td>{{seller.id}}</td>
-                    <td>{{seller.name}}</td>
-                    <td>{{seller.phone}}</td>
-                    <td>{{seller.email}}</td>
-                </tr>
+            <tr>
+                <td>{{seller.id}}</td>
+                <td>{{seller.name}}</td>
+                <td>{{seller.phone}}</td>
+                <td>{{seller.email}}</td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-
     <a href="/">Back</a>
 </div>
-
 {% endblock %}
