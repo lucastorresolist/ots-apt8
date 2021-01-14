@@ -1,7 +1,13 @@
 from Back.models.model_marketplaces import Marketplace
 from Back.models.model_logs import Log
-from Back.dao_db.dao_marketplaces import save_mkplace, list_mkplaces
 from Back.controller.controller_logs import save_l
+from Back.dao_db.dao_marketplaces import (
+    save_mkplace,
+    list_mkplaces,
+    get_by_id,
+    update_mktplace,
+    delete_mktplace
+)
 
 
 def save_mkp(marketplace:Marketplace) -> None:
@@ -14,3 +20,19 @@ def list_mkp() -> list:
     log = Log("Listed", "Marketplaces")
     save_l(log)
     return list_mkp
+    
+def get_mkp_by_id(id:int) -> Marketplace:
+    marketplace = get_by_id(id)
+    log = Log("Listed", "Marketplace")
+    save_l(log)
+    return marketplace
+
+def update_mkp(marketplace:Marketplace) -> None:
+    update_mktplace(marketplace)
+    log = Log("Updated", "Marketplace")
+    save_l(log)
+
+def delete_mkp(id:int) -> None:
+    delete_mktplace(id)
+    log = Log("Deleted", "Marketplace")
+    save_l(log)
