@@ -1,24 +1,31 @@
 {% extends 'template.html' %}
 {% block body %}
-<h1> List of Categories </h1>
-<table>
-    <thead>
-        <tr>
-            <th>Identifier</th>
-            <th>Category</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for category in categories %}
-        <tr>
-            <td>{{ category.id }}</td>
-            <td>{{ category.name }}</td>
-            <td>{{ category.description }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-    <tfoot></tfoot>
-</table>
-<a href="/">Back</a>
+<div class="main-container">
+    <h1> List of Categories </h1>
+    <table border="1" class="products-table">
+        <thead>
+            <tr>
+                <th>Identifier</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td>
+                    <button onclick="location.href='list_categories?id={{category.id}}'" type="button">Deletar</button>
+                    <button onclick="location.href='update_category?id={{category.id}}'" type="button">Update</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>{{message}}</p>
+    <a href="/">Back</a>
+</div>
 {% endblock %}

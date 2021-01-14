@@ -1,11 +1,11 @@
 {% extends 'template.html' %}
 {% block body %}
-
 <div class="main-container">
+    <h1> List of Sellers </h1>
     <table border="1">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Identifier</th>
                 <th>Name</th>
                 <th>Phone</th>
                 <th>E-mail</th>
@@ -28,8 +28,6 @@
             {% endfor %}
         </tbody>
     </table>
-
     <a href="/">Back</a>
 </div>
-
 {% endblock %}

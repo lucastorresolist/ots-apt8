@@ -36,6 +36,9 @@ input{
 }
 
 .form_buttons{
+    padding-top: 5%;
+    margin: 0 auto;
+	width: 260px;
     text-align: center;
 }
 

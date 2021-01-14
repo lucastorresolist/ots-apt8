@@ -1,23 +1,32 @@
 {% extends 'template.html' %}
 {% block body %}
-<h2> List of Logs </h2>
-<table>
-    <thead>
-        <tr>
-            <th> Registered Logs </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for log in list %}
-        <tr>
-            {% if log.action == "Listed" %}
-            <td style="color: red;">{{ log.id}} ||{{ log.data}} | {{log.type}} | {{log.action}}</td>
-            {% endif %}
-            {% if log.action == "Saved" %}
-            <td style="color: rgb(255, 183, 0);">{{ log.id}} ||{{ log.data}} | {{log.type}} | {{log.action}}</td>
-            {% endif %}
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="main-container">
+    <h2> List of Logs </h2>
+    <a href="/">Back</a>
+    <table border="1" class="products-table">
+        <thead>
+            <tr>
+                <th> Registered Logs </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in list %}
+            <tr>
+                {% if log.action == "Listed" %}
+                <td style="color: rgb(228, 157, 51);">{{ log.id}} ||{{ log.data}} | {{log.type}} | {{log.action}}</td>
+                {% endif %}
+                {% if log.action == "Saved" %}
+                <td style="color: rgb(78, 203, 78);">{{ log.id}} ||{{ log.data}} | {{log.type}} | {{log.action}}</td>
+                {% endif %}
+                {% if log.action == "Delete" %}
+                <td style="color: rgb(130, 41, 54);">{{ log.id}} ||{{ log.data}} | {{log.type}} | {{log.action}}</td>
+                {% endif %}
+                {% if log.action == "Update" %}
+                <td style="color: rgb(58, 85, 194);">{{ log.id}} ||{{ log.data}} | {{log.type}} | {{log.action}}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
