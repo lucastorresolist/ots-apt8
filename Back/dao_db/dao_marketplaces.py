@@ -5,7 +5,7 @@ from Back.models.model_marketplaces import Marketplace
 def save_mkplace(marketplace:Marketplace) -> None:
     with psycopg2.connect(credentials()) as conn:
         cursor = conn.cursor()
-        sql = f"INSERT INTO marketplaces (name, description) VALUES ('{marketplace.name}','{marketplace.description}')"
+        sql = f"INSERT INTO marketplaces (name, description) VALUES ('{marketplace.name}','{marketplace.description}');"
         cursor.execute(sql)
         conn.commit()
 
@@ -13,7 +13,7 @@ def list_mkplaces() -> list:
     marketplaces = []
     with psycopg2.connect(credentials()) as conn:
         cursor = conn.cursor()
-        sql = "SELECT name, description, id FROM marketplaces"
+        sql = "SELECT name, description, id FROM marketplaces;"
         cursor.execute(sql)
         result = cursor.fetchall()
         for item in result:
@@ -24,7 +24,7 @@ def list_mkplaces() -> list:
 def get_by_id(id:int) -> int:
     with psycopg2.connect(credentials()) as conn:
         cursor = conn.cursor()
-        sql = f"SELECT name, description, id FROM marketplaces WHERE id = {id}"
+        sql = f"SELECT name, description, id FROM marketplaces WHERE id = {id};"
         cursor.execute(sql)
         result = cursor.fetchone()
         marketplace = Marketplace(result[0], result[1], result[2])
@@ -36,7 +36,7 @@ def update_mktplace(marketplace:Marketplace) -> None:
         sql = f"""
                 UPDATE marketplaces SET 
                 name = '{marketplace.name}', description = '{marketplace.description}'
-                WHERE id = {marketplace.id}
+                WHERE id = {marketplace.id};
                 """
         cursor.execute(sql)
         conn.commit()
@@ -44,6 +44,6 @@ def update_mktplace(marketplace:Marketplace) -> None:
 def delete_mktplace(id:int) -> None:
     with psycopg2.connect(credentials()) as conn:
         cursor = conn.cursor()
-        sql = f"DELETE FROM marketplaces WHERE id = {id}"
+        sql = f"DELETE FROM marketplaces WHERE id = {id};"
         cursor.execute(sql)
         conn.commit()
