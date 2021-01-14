@@ -23,16 +23,14 @@ def list_mkp() -> list:
     
 def get_mkp_by_id(id:int) -> Marketplace:
     marketplace = get_by_id(id)
-    log = Log("Listed", "Marketplace")
-    save_l(log)
     return marketplace
 
 def update_mkp(marketplace:Marketplace) -> None:
     update_mktplace(marketplace)
-    log = Log("Updated", "Marketplace")
+    log = Log("Update", "Marketplace")
     save_l(log)
 
 def delete_mkp(id:int) -> None:
     delete_mktplace(id)
-    log = Log("Deleted", "Marketplace")
+    log = Log("Delete", "Marketplace")
     save_l(log)

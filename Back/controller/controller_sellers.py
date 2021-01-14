@@ -23,16 +23,14 @@ def list_sell() -> list:
 
 def get_seller_by_id(id:int) -> Seller:
     seller = get_by_id(id)
-    log = Log("Listed", "Seller")
-    save_l(log)
     return seller
 
 def update_sell(seller:Seller) -> None:
     update_seller(seller)
-    log = Log("Updated", "Seller")
+    log = Log("Update", "Seller")
     save_l(log)
 
 def delete_sell(id:int) -> None:
     delete_seller(id)
-    log = Log("Deleted", "Seller")
+    log = Log("Delete", "Seller")
     save_l(log)
