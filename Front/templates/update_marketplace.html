@@ -1,0 +1,24 @@
+{% extends 'template.html' %}
+{% block body %}
+
+    <h2 class="title">Insert marketplace</h2>
+    <form action="/update_marketplace/{{ marketplace.id }}">
+
+        <div class="form">
+            <label for="input_name">Name</label>
+            <input type="text" name="input_name" value="{{ marketplace.name }}" id="input_name">
+        </div>
+
+        <div class="form">
+            <label for="input_description">Description</label>
+            <input type="text" name="input_description" value="{{ marketplace.description }}" id="input_description">
+        </div>
+
+        <br>
+        <div class="form_buttons">
+            <button onclick="location.href='/list_mktplaces'" type="button">Cancel</button>
+            <input type='submit' value='Update' />
+        </div>
+
+    </form>
+{% endblock %}

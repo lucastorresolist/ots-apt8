@@ -8,15 +8,21 @@
                 <th>Identifier</th>
                 <th>Marketplace</th>
                 <th>Description</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             {% for mktplace in mktplaces %}
-            <tr>
+              <tr>
                 <td>{{ mktplace.id }}</td>
                 <td>{{ mktplace.name }}</td>
                 <td>{{ mktplace.description }}</td>
-            </tr>
+                <td>                        
+                    <a href="/delete_marketplace/{{ mktplace.id }}">Delete</a>
+                    <br>
+                    <a href="/update_marketplace/{{ mktplace.id }}">Update</a>
+                </td>
+              </tr>
             {% endfor %}
         </tbody>
         <tfoot></tfoot>

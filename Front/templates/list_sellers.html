@@ -9,16 +9,22 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>E-mail</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             {% for seller in sellers %}
-            <tr>
-                <td>{{seller.id}}</td>
-                <td>{{seller.name}}</td>
-                <td>{{seller.phone}}</td>
-                <td>{{seller.email}}</td>
-            </tr>
+                <tr>
+                    <td>{{seller.id}}</td>
+                    <td>{{seller.name}}</td>
+                    <td>{{seller.phone}}</td>
+                    <td>{{seller.email}}</td>
+                    <td>                        
+                        <a href="/delete_seller/{{ seller.id }}">Delete</a>
+                        <br>
+                        <a href="/update_seller/{{ seller.id }}">Update</a>
+                    </td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>
