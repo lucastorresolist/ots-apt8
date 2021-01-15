@@ -7,4 +7,5 @@ class ControllerCategory(ControllerBase):
     def __init__(self, log: object = None) -> None:
         self.__dao = DaoCategory()
         super().__init__(self.__dao)
-        ControllerLog().create(log)
+        if log:
+            ControllerLog().create(log)

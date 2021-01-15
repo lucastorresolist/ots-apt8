@@ -19,7 +19,7 @@ class DaoCategory(DaoBase):
     def read_by_id(self, id: int) -> Category:
         category = None
         script = f"SELECT id, name, description FROM categories WHERE id = {id};"
-        result = super().read(script)[0]
+        result = super().read(script)
         if result:
             for item in result:
                 category = Category(item[1], item[2], item[0])
@@ -33,7 +33,7 @@ class DaoCategory(DaoBase):
         except Exception as e:
             return False
 
-    def update(model: Category) -> bool:
+    def update(self, model: Category) -> bool:
         try:
             script = f"UPDATE categories SET name = '{model.name}', description = '{model.description}' \
                 WHERE id = {model.id};"
