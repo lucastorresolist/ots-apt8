@@ -8,3 +8,5 @@ class SellerController(BaseController):
         self.__dao = SellerDao()
         super().__init__(self.__dao)
         ControllerLog().create(log)
+        
+        

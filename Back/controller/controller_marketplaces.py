@@ -8,3 +8,5 @@ class MarketplaceController(BaseController):
         self.__dao = MarketplaceDao()
         super().__init__(self.__dao)
         ControllerLog().create(log)
+
+        
