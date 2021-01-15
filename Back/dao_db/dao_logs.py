@@ -10,7 +10,7 @@ class DaoLog(DaoBase):
     def read_all(self) -> list:
         list_logs = []
         script = "SELECT id, data, action, type FROM logs"
-        result = super().read_all(script)
+        result = super().read(script)
         for item in result:
             log = Log(item[2], item[3], item[1], item[0])
             list_logs.append(log)
