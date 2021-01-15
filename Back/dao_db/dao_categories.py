@@ -3,7 +3,7 @@ from Back.dao_db.dao_base import DaoBase
 
 
 class DaoCategory(DaoBase):
-    def create(sef, model: Category) -> None:
+    def create(self, model: Category) -> None:
         script = f"INSERT INTO categories (name, description) values ('{model.name}','{model.description}')"
         return super().execute(script)
 

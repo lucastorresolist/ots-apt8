@@ -1,22 +1,17 @@
-from Back.dao_db.connection import Connection
+from Back.dao_db.dao_base import DaoBase
 from Back.models.model_logs import Log
 
 
-def save_log(log: Log) -> None:
-    with Connection() as conn:
-        cursor = conn.cursor()
-        sql = f"INSERT INTO logs (action, type) VALUES ('{log.action}','{log.type}')"
-        cursor.execute(sql)
-        conn.commit()
+class DaoLog(DaoBase):
+    def create(self, log: Log) -> None:
+        script = f"INSERT INTO logs (action, type) VALUES ('{log.action}','{log.type}')"
+        return super().execute(script)
 
-def list_logs():
-    list_logs = []
-    with Connection() as conn:
-        cursor = conn.cursor()
-        sql = "SELECT id, data, action, type FROM logs"
-        cursor.execute(sql)
-        result = cursor.fetchall()
+    def read_all(self) -> list:
+        list_logs = []
+        script = "SELECT id, data, action, type FROM logs"
+        result = super().read_all(script)
         for item in result:
             log = Log(item[2], item[3], item[1], item[0])
             list_logs.append(log)
-    return list_logs
+        return list_logs
