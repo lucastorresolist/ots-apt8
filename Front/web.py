@@ -12,7 +12,6 @@ from Back.models.model_sellers import Seller
 from Back.models.model_products import Product
 from Back.models.model_categories import Category
 from Back.models.model_products import Product
-from Back.models.model_logs import Log
 
 
 if __name__ == '__main__':
