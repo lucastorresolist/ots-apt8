@@ -37,3 +37,6 @@ class SellerDao(DaoBase):
                         email = '{model.email}'
                     WHERE id = {model.id};"""
         super().execute(query)
+
+    def entity(self):
+        return 'Seller'

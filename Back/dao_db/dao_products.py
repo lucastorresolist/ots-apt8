@@ -42,3 +42,6 @@ class DaoProduct(DaoBase):
             return True
         except Exception as e:
             return False
+
+    def entity(self):
+        return 'Products'

@@ -36,3 +36,6 @@ class MarketplaceDao(DaoBase):
                         description = '{model.description}'
                     WHERE id = {model.id};"""
         super().execute(query)
+
+    def entity(self):
+        return 'Marketplaces'
