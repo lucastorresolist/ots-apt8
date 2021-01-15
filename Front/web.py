@@ -3,9 +3,9 @@ sys.path.append('.')
 from flask import Flask, render_template, request, redirect
 from Back.controller.controller_categories import *
 from Back.controller.controller_logs import *
-from Back.controller.controller_marketplaces import *
+from Back.controller.controller_marketplaces import MarketplaceController
 from Back.controller.controller_products import *
-from Back.controller.controller_sellers import *
+from Back.controller.controller_sellers import SellerController
 from Back.models.model_marketplaces import Marketplace
 from Back.models.model_sellers import Seller
 from Back.models.model_products import Product
@@ -74,30 +74,30 @@ if __name__ == '__main__':
             input_name = request.args.get('input_name')
             input_description = request.args.get('input_description')
             marketplace = Marketplace(input_name, input_description)
-            save_mkp(marketplace)
+            MarketplaceController(Log('Saved', 'Marketplace')).create(marketplace)
             saved = "Marketplaces"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_marketplace.html')
 
     @app.route('/list_mktplaces')
     def list_mktplaces():
-        mktplaces = list_mkp()
+        mktplaces = MarketplaceController(Log('Listed', 'Marketplace')).read_all()
         return render_template("list_mktplaces.html", mktplaces=mktplaces)
 
-    @app.route('/update_marketplace/<id>')
+    @app.route('/update_marketplace/<int:id>')
     def update_marketplace(id):
-        marketplace = get_mkp_by_id(id)
+        marketplace = MarketplaceController().read_by_id(id)
         if request.args:
             new_name = request.args.get('input_name')
             new_description = request.args.get('input_description')
             marketplace = Marketplace(new_name, new_description, id)
-            update_mkp(marketplace)
+            MarketplaceController(Log('Update', 'Marketplace')).update(marketplace)
             return redirect("/list_mktplaces")
         return render_template('update_marketplace.html', marketplace = marketplace)
 
     @app.route("/delete_marketplace/<int:id>")
     def delete_marketplace(id):
-        delete_mkp(id)
+        MarketplaceController(Log('Delete', 'Marketplace')).delete(id)
         return redirect('/list_mktplaces')
 
     @app.route('/insert_product')
@@ -152,31 +152,31 @@ if __name__ == '__main__':
             input_phone = request.args.get('phone')
             input_email = request.args.get('email')
             seller = Seller(input_name, input_phone, input_email)
-            save_sell(seller)
+            SellerController(Log('Saved', 'Seller')).create(seller)
             saved = "Seller"
             return render_template('inserted.html', saved=saved)
         return render_template("insert_seller.html")
 
     @app.route("/list_sellers")
     def list_sellers():
-        sellers = list_sell()
+        sellers = SellerController(Log('Listed', 'Sellers')).read_all()
         return render_template("list_sellers.html", sellers=sellers)
 
     @app.route("/update_seller/<int:id>")
     def update_seller(id):
-        seller = get_seller_by_id(id)
+        seller = SellerController(Log('Update', 'Seller')).read_by_id(id)
         if request.args:
             new_name = request.args.get('name')
             new_phone = request.args.get('phone')
             new_email = request.args.get('email')
             seller = Seller(new_name, new_phone, new_email, id)
-            update_sell(seller)
+            SellerController().update(seller)
             return redirect('/list_sellers')
         return render_template("update_seller.html", seller = seller)
 
     @app.route("/delete_seller/<int:id>")
     def delete_seller(id):
-        delete_sell(id)
+        SellerController(Log('Delete', 'Seller')).delete(id)
         return redirect('/list_sellers')
 
     @app.route('/inserted')
