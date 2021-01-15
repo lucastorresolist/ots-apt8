@@ -36,7 +36,6 @@ if __name__ == '__main__':
         msg = ''
         if request.args:
             id = request.args.get('id')
-            print(id)
             name = request.args.get('name')
             description = request.args.get('description')
             if id is not None and name is None:
