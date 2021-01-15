@@ -41,3 +41,6 @@ class DaoCategory(DaoBase):
             return True
         except Exception as e:
             return False
+
+    def entity(self):
+        return 'Category'

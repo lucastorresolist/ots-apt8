@@ -28,7 +28,7 @@ if __name__ == '__main__':
             name = request.args.get('name')
             description = request.args.get('description')
             category = Category(name, description)
-            ControllerCategory(Log('Saved', 'Category')).create(category)
+            ControllerCategory().create(category)
             saved = "Category"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_category.html')
@@ -44,7 +44,7 @@ if __name__ == '__main__':
                 category = ControllerCategory().read_by_id(id)
                 return render_template("update_category.html", id_=id, name_=category.name, description_=category.description)
             category = Category(name, description, id)
-            if ControllerCategory(Log('Update', 'Category')).update(category):
+            if ControllerCategory().update(category):
                 msg = "Categoria atualizada com sucesso!"
                 return render_template("update_category.html", message=msg)
             else:
@@ -58,11 +58,11 @@ if __name__ == '__main__':
         if request.args:
             id = request.args.get('id')
             if id is not None:
-                if ControllerCategory(Log('Delete', 'Category')).delete(id):
+                if ControllerCategory().delete(id):
                     msg = "Categoria deletada com sucesso!"
                 else:
                     msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-        categories = ControllerCategory(Log('Listed', 'Category')).read_all()
+        categories = ControllerCategory().read_all()
         return render_template("list_categories.html", categories=categories, message=msg)
 
     @app.route('/list_logs')
@@ -76,14 +76,14 @@ if __name__ == '__main__':
             input_name = request.args.get('input_name')
             input_description = request.args.get('input_description')
             marketplace = Marketplace(input_name, input_description)
-            MarketplaceController(Log('Saved', 'Marketplace')).create(marketplace)
+            MarketplaceController().create(marketplace)
             saved = "Marketplaces"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_marketplace.html')
 
     @app.route('/list_mktplaces')
     def list_mktplaces():
-        mktplaces = MarketplaceController(Log('Listed', 'Marketplace')).read_all()
+        mktplaces = MarketplaceController().read_all()
         return render_template("list_mktplaces.html", mktplaces=mktplaces)
 
     @app.route('/update_marketplace/<int:id>')
@@ -93,13 +93,13 @@ if __name__ == '__main__':
             new_name = request.args.get('input_name')
             new_description = request.args.get('input_description')
             marketplace = Marketplace(new_name, new_description, id)
-            MarketplaceController(Log('Update', 'Marketplace')).update(marketplace)
+            MarketplaceController().update(marketplace)
             return redirect("/list_mktplaces")
         return render_template('update_marketplace.html', marketplace=marketplace)
 
     @app.route("/delete_marketplace/<int:id>")
     def delete_marketplace(id):
-        MarketplaceController(Log('Delete', 'Marketplace')).delete(id)
+        MarketplaceController().delete(id)
         return redirect('/list_mktplaces')
 
     @app.route('/insert_product')
@@ -109,7 +109,7 @@ if __name__ == '__main__':
             input_description = request.args.get('input_description')
             input_price = request.args.get('input_price')
             product = Product(input_name, input_description, input_price)
-            ControllerProduct(Log('Saved', 'Product')).create(product)
+            ControllerProduct().create(product)
             saved = "Product"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_product.html')
@@ -126,7 +126,7 @@ if __name__ == '__main__':
                 product = ControllerProduct().read_by_id(id)
                 return render_template("update_product.html", id_=id, name=product.name, description=product.description, price=product.price)
             product = Product(input_name, input_description, input_price, id)
-            if ControllerProduct(Log('Update', 'Product')).update(product):
+            if ControllerProduct().update(product):
                 msg = "Produto atualizada com sucesso!"
                 return render_template("update_product.html", message=msg)
             else:
@@ -140,11 +140,11 @@ if __name__ == '__main__':
         if request.args:
             id = request.args.get('id')
             if id is not None:
-                if ControllerProduct(Log('Delete', 'Product')).delete(id):
+                if ControllerProduct().delete(id):
                     msg = "Produto deletado com sucesso!"
                 else:
                     msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-        products_list = ControllerProduct(Log('Listed', 'Product')).read_all()
+        products_list = ControllerProduct().read_all()
         return render_template("list_products.html", products=products_list, message=msg)
 
     @app.route("/insert_seller")
@@ -154,19 +154,19 @@ if __name__ == '__main__':
             input_phone = request.args.get('phone')
             input_email = request.args.get('email')
             seller = Seller(input_name, input_phone, input_email)
-            SellerController(Log('Saved', 'Seller')).create(seller)
+            SellerController().create(seller)
             saved = "Seller"
             return render_template('inserted.html', saved=saved)
         return render_template("insert_seller.html")
 
     @app.route("/list_sellers")
     def list_sellers():
-        sellers = SellerController(Log('Listed', 'Sellers')).read_all()
+        sellers = SellerController().read_all()
         return render_template("list_sellers.html", sellers=sellers)
 
     @app.route("/update_seller/<int:id>")
     def update_seller(id):
-        seller = SellerController(Log('Update', 'Seller')).read_by_id(id)
+        seller = SellerController().read_by_id(id)
         if request.args:
             new_name = request.args.get('name')
             new_phone = request.args.get('phone')
@@ -178,7 +178,7 @@ if __name__ == '__main__':
 
     @app.route("/delete_seller/<int:id>")
     def delete_seller(id):
-        SellerController(Log('Delete', 'Seller')).delete(id)
+        SellerController().delete(id)
         return redirect('/list_sellers')
 
     @app.route('/inserted')

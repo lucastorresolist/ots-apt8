@@ -1,8 +1,8 @@
-from .dao_base import BaseDao
+from .dao_base import DaoBase
 from Back.models.model_sellers import Seller
 
 
-class SellerDao(BaseDao):
+class SellerDao(DaoBase):
     def create(self, model:Seller)-> None:
         query = f"""INSERT INTO sellers 
                     (name, phone, email) 
@@ -37,3 +37,6 @@ class SellerDao(BaseDao):
                         email = '{model.email}'
                     WHERE id = {model.id};"""
         super().execute(query)
+
+    def entity(self):
+        return 'Seller'
