@@ -1,8 +1,8 @@
-from .dao_base import BaseDao
+from .dao_base import DaoBase
 from Back.models.model_marketplaces import Marketplace
 
 
-class MarketplaceDao(BaseDao):
+class MarketplaceDao(DaoBase):
     def create(self, model:Marketplace)-> None:
         query = f"""INSERT INTO marketplaces 
                     (name, description) 

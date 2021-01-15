@@ -1,4 +1,4 @@
-class BaseController:
+class ControllerBase:
     def __init__(self, dao):
         self.__dao = dao
 

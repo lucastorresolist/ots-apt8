@@ -1,7 +1,7 @@
 from .connection import Connection
 
 
-class BaseDao:
+class DaoBase:
     def execute(self, query:str)-> None:
         with Connection() as connection:
             cursor = connection.cursor()
