@@ -1,15 +1,15 @@
 import sys
 sys.path.append('.')
-from flask import Flask, render_template, request, redirect
-from Back.controller.controller_categories import *
-from Back.controller.controller_logs import *
-from Back.controller.controller_marketplaces import *
-from Back.controller.controller_products import *
-from Back.controller.controller_sellers import *
-from Back.models.model_marketplaces import Marketplace
-from Back.models.model_sellers import Seller
-from Back.models.model_products import Product
 from Back.models.model_categories import Category
+from Back.models.model_products import Product
+from Back.models.model_sellers import Seller
+from Back.models.model_marketplaces import Marketplace
+from Back.controller.controller_sellers import *
+from Back.controller.controller_products import ControllerProduct
+from Back.controller.controller_marketplaces import *
+from Back.controller.controller_logs import ControllerLog
+from Back.controller.controller_categories import ControllerCategory
+from flask import Flask, render_template, request, redirect
 
 
 if __name__ == '__main__':
@@ -26,7 +26,7 @@ if __name__ == '__main__':
             name = request.args.get('name')
             description = request.args.get('description')
             category = Category(name, description)
-            save_cat(category)
+            ControllerCategory(Log('Saved', 'Category')).create(category)
             saved = "Category"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_category.html')
@@ -39,10 +39,10 @@ if __name__ == '__main__':
             name = request.args.get('name')
             description = request.args.get('description')
             if id is not None and name is None:
-                category = list_cat_byId(id)
+                category = ControllerCategory().read_by_id(id)
                 return render_template("update_category.html", id_=id, name_=category.name, description_=category.description)
             category = Category(name, description, id)
-            if update_cat(category):
+            if ControllerCategory(Log('Update', 'Category')).update(category):
                 msg = "Categoria atualizada com sucesso!"
                 return render_template("update_category.html", message=msg)
             else:
@@ -56,16 +56,16 @@ if __name__ == '__main__':
         if request.args:
             id = request.args.get('id')
             if id is not None:
-                if delete_cat(id):
+                if ControllerCategory(Log('Delete', 'Category')).delete(id):
                     msg = "Categoria deletada com sucesso!"
                 else:
                     msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-        categories = list_cat()
+        categories = ControllerCategory(Log('Listed', 'Category')).read_all()
         return render_template("list_categories.html", categories=categories, message=msg)
 
     @app.route('/list_logs')
     def listed_log():
-        list_log = list_l()
+        list_log = ControllerLog().read_all()
         return render_template('list_logs.html', list=list_log)
 
     @app.route('/insert_marketplace')
@@ -93,7 +93,7 @@ if __name__ == '__main__':
             marketplace = Marketplace(new_name, new_description, id)
             update_mkp(marketplace)
             return redirect("/list_mktplaces")
-        return render_template('update_marketplace.html', marketplace = marketplace)
+        return render_template('update_marketplace.html', marketplace=marketplace)
 
     @app.route("/delete_marketplace/<int:id>")
     def delete_marketplace(id):
@@ -107,7 +107,7 @@ if __name__ == '__main__':
             input_description = request.args.get('input_description')
             input_price = request.args.get('input_price')
             product = Product(input_name, input_description, input_price)
-            save_prod(product)
+            ControllerProduct(Log('Saved', 'Product')).create(product)
             saved = "Product"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_product.html')
@@ -121,10 +121,10 @@ if __name__ == '__main__':
             input_description = request.args.get('input_description')
             input_price = request.args.get('input_price')
             if id is not None and input_name is None:
-                product = list_prod_byId(id)
+                product = ControllerProduct().read_by_id(id)
                 return render_template("update_product.html", id_=id, name=product.name, description=product.description, price=product.price)
             product = Product(input_name, input_description, input_price, id)
-            if update_product(product):
+            if ControllerProduct(Log('Update', 'Product')).update(product):
                 msg = "Produto atualizada com sucesso!"
                 return render_template("update_product.html", message=msg)
             else:
@@ -138,11 +138,11 @@ if __name__ == '__main__':
         if request.args:
             id = request.args.get('id')
             if id is not None:
-                if delete_prod(id):
+                if ControllerProduct(Log('Delete', 'Product')).delete(id):
                     msg = "Produto deletado com sucesso!"
                 else:
                     msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-        products_list = list_prod()
+        products_list = ControllerProduct(Log('Listed', 'Product')).read_all()
         return render_template("list_products.html", products=products_list, message=msg)
 
     @app.route("/insert_seller")
@@ -172,7 +172,7 @@ if __name__ == '__main__':
             seller = Seller(new_name, new_phone, new_email, id)
             update_sell(seller)
             return redirect('/list_sellers')
-        return render_template("update_seller.html", seller = seller)
+        return render_template("update_seller.html", seller=seller)
 
     @app.route("/delete_seller/<int:id>")
     def delete_seller(id):
