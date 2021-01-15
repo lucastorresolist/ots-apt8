@@ -1,4 +1,3 @@
-from typing import List
 from Back.models.model_categories import Category
 from Back.dao_db.dao_base import DaoBase
 
@@ -6,7 +5,7 @@ from Back.dao_db.dao_base import DaoBase
 class DaoCategory(DaoBase):
     def create(sef, model: Category) -> None:
         script = f"INSERT INTO categories (name, description) values ('{model.name}','{model.description}')"
-        super().execute(script)
+        return super().execute(script)
 
     def read_all(self) -> list:
         list_categories = []

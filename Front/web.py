@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect
 from Back.controller.controller_categories import ControllerCategory
 from Back.controller.controller_logs import *
 from Back.controller.controller_marketplaces import *
-from Back.controller.controller_products import *
+from Back.controller.controller_products import ControllerProduct
 from Back.controller.controller_sellers import *
 from Back.models.model_marketplaces import Marketplace
 from Back.models.model_sellers import Seller
@@ -107,7 +107,7 @@ if __name__ == '__main__':
             input_description = request.args.get('input_description')
             input_price = request.args.get('input_price')
             product = Product(input_name, input_description, input_price)
-            save_prod(product)
+            ControllerProduct().create(product)
             saved = "Product"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_product.html')
@@ -121,10 +121,10 @@ if __name__ == '__main__':
             input_description = request.args.get('input_description')
             input_price = request.args.get('input_price')
             if id is not None and input_name is None:
-                product = list_prod_byId(id)
+                product = ControllerProduct().read_by_id(id)
                 return render_template("update_product.html", id_=id, name=product.name, description=product.description, price=product.price)
             product = Product(input_name, input_description, input_price, id)
-            if update_product(product):
+            if ControllerProduct().update(product):
                 msg = "Produto atualizada com sucesso!"
                 return render_template("update_product.html", message=msg)
             else:
@@ -138,11 +138,11 @@ if __name__ == '__main__':
         if request.args:
             id = request.args.get('id')
             if id is not None:
-                if delete_prod(id):
+                if ControllerProduct().delete(id):
                     msg = "Produto deletado com sucesso!"
                 else:
                     msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-        products_list = list_prod()
+        products_list = ControllerProduct().read_all()
         return render_template("list_products.html", products=products_list, message=msg)
 
     @app.route("/insert_seller")
