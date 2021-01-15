@@ -1,7 +1,7 @@
 import sys
 sys.path.append('.')
 from flask import Flask, render_template, request, redirect
-from Back.controller.controller_categories import *
+from Back.controller.controller_categories import ControllerCategory
 from Back.controller.controller_logs import *
 from Back.controller.controller_marketplaces import *
 from Back.controller.controller_products import *
@@ -26,7 +26,7 @@ if __name__ == '__main__':
             name = request.args.get('name')
             description = request.args.get('description')
             category = Category(name, description)
-            save_cat(category)
+            ControllerCategory().create(category)
             saved = "Category"
             return render_template("inserted.html", saved=saved)
         return render_template('insert_category.html')
@@ -39,10 +39,10 @@ if __name__ == '__main__':
             name = request.args.get('name')
             description = request.args.get('description')
             if id is not None and name is None:
-                category = list_cat_byId(id)
+                category = ControllerCategory().read_by_id(id)
                 return render_template("update_category.html", id_=id, name_=category.name, description_=category.description)
             category = Category(name, description, id)
-            if update_cat(category):
+            if ControllerCategory().update(category):
                 msg = "Categoria atualizada com sucesso!"
                 return render_template("update_category.html", message=msg)
             else:
@@ -56,11 +56,11 @@ if __name__ == '__main__':
         if request.args:
             id = request.args.get('id')
             if id is not None:
-                if delete_cat(id):
+                if ControllerCategory().delete(id):
                     msg = "Categoria deletada com sucesso!"
                 else:
                     msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-        categories = list_cat()
+        categories = ControllerCategory().read_all()
         return render_template("list_categories.html", categories=categories, message=msg)
 
     @app.route('/list_logs')
@@ -93,7 +93,7 @@ if __name__ == '__main__':
             marketplace = Marketplace(new_name, new_description, id)
             update_mkp(marketplace)
             return redirect("/list_mktplaces")
-        return render_template('update_marketplace.html', marketplace = marketplace)
+        return render_template('update_marketplace.html', marketplace=marketplace)
 
     @app.route("/delete_marketplace/<int:id>")
     def delete_marketplace(id):
@@ -172,7 +172,7 @@ if __name__ == '__main__':
             seller = Seller(new_name, new_phone, new_email, id)
             update_sell(seller)
             return redirect('/list_sellers')
-        return render_template("update_seller.html", seller = seller)
+        return render_template("update_seller.html", seller=seller)
 
     @app.route("/delete_seller/<int:id>")
     def delete_seller(id):
