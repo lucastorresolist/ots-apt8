@@ -1,8 +1,8 @@
-from .dao_base import DaoBase
+from .base_dao import BaseDao
 from Back.models.model_sellers import Seller
 
 
-class SellerDao(DaoBase):
+class SellerDao(BaseDao):
     def create(self, model:Seller)-> None:
         query = f"""INSERT INTO sellers 
                     (name, phone, email) 

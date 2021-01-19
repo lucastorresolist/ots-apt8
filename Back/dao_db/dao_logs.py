@@ -1,8 +1,8 @@
-from Back.dao_db.dao_base import DaoBase
-from Back.models.model_logs import Log
+from .base_dao import BaseDao
+from Back.models.logs_model import Log
 
 
-class DaoLog(DaoBase):
+class DaoLog(BaseDao):
     def create(self, log: Log) -> None:
         script = f"INSERT INTO logs (action, type) VALUES ('{log.action}','{log.type}')"
         return super().execute(script)

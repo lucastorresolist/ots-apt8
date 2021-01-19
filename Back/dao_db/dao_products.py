@@ -1,8 +1,8 @@
 from Back.models.model_products import Product
-from Back.dao_db.dao_base import DaoBase
+from .base_dao import BaseDao
 
 
-class DaoProduct(DaoBase):
+class DaoProduct(BaseDao):
 
     def create(self, model: Product) -> None:
         script = f"INSERT INTO products (name, description, price) values ('{model.name}','{model.description}', '{model.price}')"
