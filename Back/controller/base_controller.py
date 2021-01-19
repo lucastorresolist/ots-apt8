@@ -1,8 +1,8 @@
-from Back.controller.controller_logs import ControllerLog
-from Back.models.model_logs import Log
+from .logs_controller import ControllerLog
+from ..models.logs_model import Log
 
 
-class ControllerBase:
+class BaseController:
     def __init__(self, dao):
         self.__dao = dao
         self.__log_controller = ControllerLog()

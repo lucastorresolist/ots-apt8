@@ -1,8 +1,8 @@
 from Back.models.model_categories import Category
-from Back.dao_db.dao_base import DaoBase
+from .base_dao import BaseDao
 
 
-class DaoCategory(DaoBase):
+class DaoCategory(BaseDao):
     def create(self, model: Category) -> None:
         script = f"INSERT INTO categories (name, description) values ('{model.name}','{model.description}')"
         return super().execute(script)
