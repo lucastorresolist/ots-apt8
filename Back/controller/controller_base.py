@@ -5,11 +5,12 @@ from Back.models.model_logs import Log
 class ControllerBase:
     def __init__(self, dao):
         self.__dao = dao
+        self.__log_controller = ControllerLog()
 
     def create(self, model:object)-> None:
-        request = self.__dao.create(model)
+        request = self.__dao.save(model)
         log = Log("Saved", self.__dao.entity())
-        ControllerLog().create(log)
+        self.__log_controller.save(log)
         return request
 
     def read_by_id(self,id:int)-> object:
@@ -18,15 +19,16 @@ class ControllerBase:
     def read_all(self)-> list:
         request = self.__dao.read_all()
         log = Log("Listed", self.__dao.entity())
-        ControllerLog().create(log)
+        self.__log_controller.save(log)
         return request
 
     def delete(self, id:int)-> None:
+        model = self.read_by_id(id)
+        self.__dao.delete(model)
         log = Log("Delete", self.__dao.entity())
-        ControllerLog().create(log)
-        self.__dao.delete(id)
+        self.__log_controller.save(log)
 
     def update(self, model:object)-> None:
+        self.__dao.save(model)
         log = Log("Update", self.__dao.entity())
-        ControllerLog().create(log)
-        self.__dao.update(model)
+        self.__log_controller.save(log)
