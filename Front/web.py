@@ -1,6 +1,3 @@
-import sys
-sys.path.append('.')
-
 from flask import Flask, render_template, request, redirect
 from Back.controller.controller_categories import ControllerCategory
 from Back.controller.controller_logs import ControllerLog
