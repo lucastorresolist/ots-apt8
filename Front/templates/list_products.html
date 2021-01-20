@@ -21,7 +21,7 @@
                 <td>R$ {{product.price}}</td>
                 <td>
                     <button onclick="location.href='list_products?id={{product.id}}'" type="button">Deletar</button>
-                    <button onclick="location.href='update_product?id={{product.id}}'" type="button">Update</button>
+                    <button onclick="location.href='update_product/{{product.id}}'" type="button">Update</button>
                 </td>
             </tr>
             {% endfor %}
