@@ -1,8 +1,8 @@
 from Back.controller.base_controller import BaseController
-from Back.dao_db.dao_categories import DaoCategory
+from Back.dao_db.categories_dao import CategoryDao
 
 
-class ControllerCategory(BaseController):
+class CategoryController(BaseController):
     def __init__(self) -> None:
-        self.__dao = DaoCategory()
+        self.__dao = CategoryDao()
         super().__init__(self.__dao)

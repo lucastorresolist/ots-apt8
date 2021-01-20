@@ -1,17 +1,17 @@
 {% extends 'template.html' %}
 {% block body %}
 <h2 class="title">Update Product</h2>
-<form action="/update_product">
+<form action="/update_product/{{product.id}}">
     <div class="form">
-        <input type="hidden" name="id" value="{{id_}}">
+        <input type="hidden" name="id" value="{{product.id}}">
         <label for="input_name">Name</label>
-        <input type="text" name="input_name" id="input_name" value="{{name}}">
+        <input type="text" name="input_name" id="input_name" value="{{product.name}}">
 
         <label for="input_description">Description</label>
-        <input type="text" name="input_description" id="input_description" value="{{description}}">
+        <input type="text" name="input_description" id="input_description" value="{{product.description}}">
 
         <label for="input_price">Price</label>
-        <input type="number" name="input_price" id="input_price" value="{{price}}">
+        <input type="number" name="input_price" id="input_price" value="{{product.price}}">
     </div>
     <br>
     <div class="form_buttons">
