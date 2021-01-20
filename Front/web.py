@@ -3,9 +3,9 @@ from Back.controller.categories_controller import CategoryController
 from Back.controller.logs_controller import ControllerLog
 from Back.controller.controller_marketplaces import MarketplaceController
 from Back.controller.controller_products import ControllerProduct
-from Back.controller.controller_sellers import SellerController
+from Back.controller.sellers_controller import SellerController
 from Back.models.model_marketplaces import Marketplace
-from Back.models.model_sellers import Seller
+from Back.models.sellers_model import Seller
 from Back.models.model_products import Product
 from Back.models.categories_model import Category
 from Back.models.model_products import Product
@@ -156,10 +156,9 @@ def list_sellers():
 def update_seller(id):
     seller = SellerController().read_by_id(id)
     if request.args:
-        new_name = request.args.get('name')
-        new_phone = request.args.get('phone')
-        new_email = request.args.get('email')
-        seller = Seller(new_name, new_phone, new_email, id)
+        seller.name = request.args.get('name')
+        seller.phone = request.args.get('phone')
+        seller.email = request.args.get('email')
         SellerController().update(seller)
         return redirect('/list_sellers')
     return render_template("update_seller.html", seller=seller)

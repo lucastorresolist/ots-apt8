@@ -11,6 +11,11 @@ class BaseDao:
             session.add(model)
             session.commit()
 
+    def update(self, model: BaseModel) -> None:
+        with Session() as session:
+            session.add(model)
+            session.commit()
+
     def read_all(self) -> list:
         with Session() as session:
             result = session.query(self.type_model).all()
