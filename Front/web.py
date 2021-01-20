@@ -1,11 +1,16 @@
 from flask import Flask, render_template, request, redirect
 from Back.controller.categories_controller import CategoryController
 from Back.controller.logs_controller import ControllerLog
-from Back.controller.controller_marketplaces import MarketplaceController
+
+from Back.controller.marketplaces_controller import MarketplaceController
+
+
+
 
 from Back.controller.products_controller import ProductController
+
 from Back.controller.controller_sellers import SellerController
-from Back.models.model_marketplaces import Marketplace
+from Back.models.marketplaces_model import Marketplace
 from Back.models.model_sellers import Seller
 from Back.models.products_model import Product
 from Back.models.model_categories import Category
@@ -85,9 +90,9 @@ def list_mktplaces():
 def update_marketplace(id):
     marketplace = MarketplaceController().read_by_id(id)
     if request.args:
-        new_name = request.args.get('input_name')
-        new_description = request.args.get('input_description')
-        marketplace = Marketplace(new_name, new_description, id)
+        marketplace.name = request.args.get('input_name')
+        marketplace.description = request.args.get('input_description')
+        marketplace = Marketplace(marketplace.name, marketplace.description, id)
         MarketplaceController().update(marketplace)
         return redirect("/list_mktplaces")
     return render_template('update_marketplace.html', marketplace=marketplace)
