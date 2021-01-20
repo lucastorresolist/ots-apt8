@@ -43,13 +43,9 @@ def list_categories():
     msg = ''
     if request.args:
         id = request.args.get('id')
-        if id is not None:
-            if CategoryController().delete(id):
-                msg = "Categoria deletada com sucesso!"
-            else:
-                msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
+        CategoryController().delete(id)
     categories = CategoryController().read_all()
-    return render_template("list_categories.html", categories=categories, message=msg)
+    return render_template("list_categories.html", categories=categories)
 
 @app.route('/list_logs')
 def listed_log():
@@ -78,7 +74,6 @@ def update_marketplace(id):
     if request.args:
         marketplace.name = request.args.get('input_name')
         marketplace.description = request.args.get('input_description')
-        marketplace = Marketplace(marketplace.name, marketplace.description, id)
         MarketplaceController().update(marketplace)
         return redirect("/list_mktplaces")
     return render_template('update_marketplace.html', marketplace=marketplace)
@@ -117,13 +112,9 @@ def list_products():
     msg = ''
     if request.args:
         id = request.args.get('id')
-        if id is not None:
-            if ProductController().delete(id):
-                msg = "Produto deletado com sucesso!"
-            else:
-                msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
+        ProductController().delete(id)
     products_list = ProductController().read_all()
-    return render_template("list_products.html", products=products_list, message=msg)
+    return render_template("list_products.html", products=products_list)
 
 @app.route("/insert_seller")
 def insert_sellers():
