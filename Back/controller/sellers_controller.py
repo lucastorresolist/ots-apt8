@@ -1,5 +1,5 @@
 from Back.controller.base_controller import BaseController
-from Back.dao_db.dao_sellers import SellerDao
+from Back.dao_db.sellers_dao import SellerDao
 
 
 class SellerController(BaseController):

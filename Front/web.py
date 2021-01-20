@@ -1,13 +1,23 @@
 from flask import Flask, render_template, request, redirect
-from Back.controller.controller_categories import ControllerCategory
+from Back.controller.categories_controller import CategoryController
 from Back.controller.logs_controller import ControllerLog
 from Back.controller.controller_marketplaces import MarketplaceController
+
 from Back.controller.products_controller import ProductController
 from Back.controller.controller_sellers import SellerController
 from Back.models.model_marketplaces import Marketplace
 from Back.models.model_sellers import Seller
 from Back.models.products_model import Product
 from Back.models.model_categories import Category
+
+from Back.controller.controller_products import ControllerProduct
+from Back.controller.sellers_controller import SellerController
+from Back.models.model_marketplaces import Marketplace
+from Back.models.sellers_model import Seller
+from Back.models.model_products import Product
+from Back.models.categories_model import Category
+from Back.models.model_products import Product
+
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -22,29 +32,20 @@ def category_created():
         name = request.args.get('name')
         description = request.args.get('description')
         category = Category(name, description)
-        ControllerCategory().create(category)
+        CategoryController().create(category)
         saved = "Category"
         return render_template("inserted.html", saved=saved)
     return render_template('insert_category.html')
 
-@app.route('/update_category')
+@app.route('/update_category/<int:id>')
 def update_category():
-    msg = ''
+    category = CategoryController().read_by_id(id)
     if request.args:
-        id = request.args.get('id')
-        name = request.args.get('name')
-        description = request.args.get('description')
-        if id is not None and name is None:
-            category = ControllerCategory().read_by_id(id)
-            return render_template("update_category.html", id_=id, name_=category.name, description_=category.description)
-        category = Category(name, description, id)
-        if ControllerCategory().update(category):
-            msg = "Categoria atualizada com sucesso!"
-            return render_template("update_category.html", message=msg)
-        else:
-            msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-            return render_template("update_category.html", message=msg)
-    return render_template("update_category.html")
+        category.name = request.args.get('name')
+        category.description = request.args.get('description')
+        CategoryController().update(category)
+        return redirect('/list_categories')
+    return render_template("update_category.html", category=category)
 
 @app.route('/list_categories')
 def list_categories():
@@ -52,11 +53,11 @@ def list_categories():
     if request.args:
         id = request.args.get('id')
         if id is not None:
-            if ControllerCategory().delete(id):
+            if CategoryController().delete(id):
                 msg = "Categoria deletada com sucesso!"
             else:
                 msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-    categories = ControllerCategory().read_all()
+    categories = CategoryController().read_all()
     return render_template("list_categories.html", categories=categories, message=msg)
 
 @app.route('/list_logs')
@@ -154,10 +155,9 @@ def list_sellers():
 def update_seller(id):
     seller = SellerController().read_by_id(id)
     if request.args:
-        new_name = request.args.get('name')
-        new_phone = request.args.get('phone')
-        new_email = request.args.get('email')
-        seller = Seller(new_name, new_phone, new_email, id)
+        seller.name = request.args.get('name')
+        seller.phone = request.args.get('phone')
+        seller.email = request.args.get('email')
         SellerController().update(seller)
         return redirect('/list_sellers')
     return render_template("update_seller.html", seller=seller)

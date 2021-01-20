@@ -10,7 +10,7 @@ class Session:
         password = 'olist123'
         dbname = 'topskills13'
         self.__connection_string = f"{connector}://{user}:{password}@{host}:5432/{dbname}"
-    
+
     def __enter__(self) -> object:
         self.__engine = create_engine(self.__connection_string)
         Session = sessionmaker(self.__engine)
