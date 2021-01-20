@@ -1,9 +1,9 @@
-from Back.dao_db.dao_logs import DaoLog
+from Back.dao_db.logs_dao import LogDao
 
 
-class ControllerLog():
+class LogController():
     def create(self, model)-> None:
-        return DaoLog().create(model)
+        return LogDao().save(model)
 
     def read_all(self)-> list:
-        return DaoLog().read_all()
+        return LogDao().read_all()

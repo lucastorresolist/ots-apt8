@@ -1,27 +1,13 @@
 from flask import Flask, render_template, request, redirect
 from Back.controller.categories_controller import CategoryController
-from Back.controller.logs_controller import ControllerLog
-
+from Back.controller.logs_controller import LogController
 from Back.controller.marketplaces_controller import MarketplaceController
-
-
-
-
 from Back.controller.products_controller import ProductController
-
-from Back.controller.controller_sellers import SellerController
 from Back.models.marketplaces_model import Marketplace
-from Back.models.model_sellers import Seller
 from Back.models.products_model import Product
-from Back.models.model_categories import Category
-
-from Back.controller.controller_products import ControllerProduct
 from Back.controller.sellers_controller import SellerController
-from Back.models.model_marketplaces import Marketplace
 from Back.models.sellers_model import Seller
-from Back.models.model_products import Product
 from Back.models.categories_model import Category
-from Back.models.model_products import Product
 
 
 app = Flask(__name__)
@@ -43,7 +29,7 @@ def category_created():
     return render_template('insert_category.html')
 
 @app.route('/update_category/<int:id>')
-def update_category():
+def update_category(id):
     category = CategoryController().read_by_id(id)
     if request.args:
         category.name = request.args.get('name')
@@ -67,7 +53,7 @@ def list_categories():
 
 @app.route('/list_logs')
 def listed_log():
-    list_log = ControllerLog().read_all()
+    list_log = LogController().read_all()
     return render_template('list_logs.html', list=list_log)
 
 @app.route('/insert_marketplace')
