@@ -3,18 +3,18 @@
 <h2 class="title">Update Category</h2>
 <form action="/update_category">
     <div class="form">
-        <input type="hidden" name="id" value="{{id_}}">
+        <input type="hidden" name="id" value="{{category.id}}">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" required value="{{name_}}" />
+        <input type="text" name="name" id="name" required value="{{category.name}}" />
     </div>
     <div class="form">
         <label for="description">Description</label>
-        <input type="text" name="description" id="description" required value="{{description_}}" />
+        <input type="text" name="description" id="description" required value="{{category.description}}" />
     </div>
     <br />
     <div class="form_buttons">
-        <button onclick="location.href='/'" type="button">Go back</button>
-        <input type='submit' value='Save' />
+        <button onclick="location.href='/list_categories'" type="button">Cancel</button>
+        <input type='submit' value='Update' />
     </div>
     <p>{{messsage}}</p>
 </form>
