@@ -1,5 +1,5 @@
 from Back.controller.base_controller import BaseController
-from Back.dao_db.dao_marketplaces import MarketplaceDao
+from Back.dao_db.marketplaces_dao import MarketplaceDao
 
 
 class MarketplaceController(BaseController):
