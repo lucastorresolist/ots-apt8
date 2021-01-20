@@ -9,6 +9,6 @@ class Marketplace(BaseModel):
     description = Column ( String(length=(150)))
 
     def __init__(self, name:str, description:str, id:int = None)-> None:
-        self.__id = id
-        self.__name = name
-        self.__description = description
+        self.id = id
+        self.name = name
+        self.description = description
