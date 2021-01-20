@@ -2,15 +2,12 @@ from flask import Flask, render_template, request, redirect
 from Back.controller.controller_categories import ControllerCategory
 from Back.controller.logs_controller import ControllerLog
 from Back.controller.controller_marketplaces import MarketplaceController
-from Back.controller.controller_products import ControllerProduct
+from Back.controller.products_controller import ProductController
 from Back.controller.controller_sellers import SellerController
 from Back.models.model_marketplaces import Marketplace
 from Back.models.model_sellers import Seller
-from Back.models.model_products import Product
+from Back.models.products_model import Product
 from Back.models.model_categories import Category
-from Back.models.model_products import Product
-
-
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -106,30 +103,22 @@ def insert_product():
         input_description = request.args.get('input_description')
         input_price = request.args.get('input_price')
         product = Product(input_name, input_description, input_price)
-        ControllerProduct().create(product)
+        ProductController().create(product)
         saved = "Product"
         return render_template("inserted.html", saved=saved)
     return render_template('insert_product.html')
 
-@app.route('/update_product')
-def update_products():
-    msg = ''
+@app.route('/update_product/<int:id>')
+def update_products(id):
+    product = ProductController().read_by_id(id)
     if request.args:
         id = request.args.get('id')
-        input_name = request.args.get('input_name')
-        input_description = request.args.get('input_description')
-        input_price = request.args.get('input_price')
-        if id is not None and input_name is None:
-            product = ControllerProduct().read_by_id(id)
-            return render_template("update_product.html", id_=id, name=product.name, description=product.description, price=product.price)
-        product = Product(input_name, input_description, input_price, id)
-        if ControllerProduct().update(product):
-            msg = "Produto atualizada com sucesso!"
-            return render_template("update_product.html", message=msg)
-        else:
-            msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-            return render_template("update_product.html", message=msg)
-    return render_template("update_product.html")
+        product.name = request.args.get('input_name')
+        product.description = request.args.get('input_description')
+        product.price = request.args.get('input_price')
+        ProductController().update(product)
+        return redirect("/list_products")
+    return render_template("update_product.html", product = product)
 
 @app.route('/list_products')
 def list_products():
@@ -137,11 +126,11 @@ def list_products():
     if request.args:
         id = request.args.get('id')
         if id is not None:
-            if ControllerProduct().delete(id):
+            if ProductController().delete(id):
                 msg = "Produto deletado com sucesso!"
             else:
                 msg = "Ops, tivemos um problema. Tente novamente mais tarde!"
-    products_list = ControllerProduct().read_all()
+    products_list = ProductController().read_all()
     return render_template("list_products.html", products=products_list, message=msg)
 
 @app.route("/insert_seller")
