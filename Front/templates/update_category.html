@@ -1,7 +1,7 @@
 {% extends 'template.html' %}
 {% block body %}
 <h2 class="title">Update Category</h2>
-<form action="/update_category">
+<form action="/update_category/{{category.id}}">
     <div class="form">
         <input type="hidden" name="id" value="{{category.id}}">
         <label for="name">Name</label>
