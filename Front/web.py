@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from Back.controller.controller_categories import ControllerCategory
 from Back.controller.logs_controller import ControllerLog
-from Back.controller.controller_marketplaces import MarketplaceController
+from Back.controller.marketplaces_controller import MarketplaceController
 from Back.controller.controller_products import ControllerProduct
 from Back.controller.controller_sellers import SellerController
-from Back.models.model_marketplaces import Marketplace
+from Back.models.marketplaces_model import Marketplace
 from Back.models.model_sellers import Seller
 from Back.models.model_products import Product
 from Back.models.model_categories import Category
