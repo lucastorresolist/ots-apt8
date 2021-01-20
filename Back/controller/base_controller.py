@@ -1,17 +1,17 @@
-from .logs_controller import ControllerLog
+from .logs_controller import LogController
 from ..models.logs_model import Log
 
 
 class BaseController:
     def __init__(self, dao):
         self.__dao = dao
-        self.__log_controller = ControllerLog()
+        self.__log_controller = LogController()
 
     def create(self, model:object)-> None:
         request = self.__dao.save(model)
 
-        log = Log("Saved", self.__dao.type_model())
-        self.__log_controller.save(log)
+        log = Log("Saved", self.__dao.entity())
+        self.__log_controller.create(log)
 
         return request
 
@@ -21,8 +21,8 @@ class BaseController:
     def read_all(self)-> list:
         request = self.__dao.read_all()
 
-        log = Log("Listed", self.__dao.type_model())
-        self.__log_controller.save(log)
+        log = Log("Listed", self.__dao.entity())
+        self.__log_controller.create(log)
 
         return request
 
@@ -30,17 +30,10 @@ class BaseController:
         model = self.read_by_id(id)
         self.__dao.delete(model)
 
-        log = Log("Delete", self.__dao.type_model())
-        self.__log_controller.save(log)
+        log = Log("Delete", self.__dao.entity())
+        self.__log_controller.create(log)
 
     def update(self, model:object)-> None:
         self.__dao.save(model)
-        log = Log("Update", self.__dao.type_model())
-        self.__log_controller.save(log)
-
-
-    def update(self, model:object)-> None:
-        self.__dao.save(model)
-
-     
-
+        log = Log("Update", self.__dao.entity())
+        self.__log_controller.create(log)

@@ -6,3 +6,5 @@ class CategoryDao(BaseDao):
     def __init__(self):
         super().__init__(Category)
 
+    def entity(self):
+        return f'Category'
